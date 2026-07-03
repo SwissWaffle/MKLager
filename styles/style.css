@@ -5,41 +5,73 @@
     --font-base: 'Segoe UI', sans-serif;
 }
 
+@font-face {
+    font-family: Shango-Medium;
+    src: url(Shango-Medium.woff2);
+}
+html{
+    font-size: 20px;
+    background-color: aquamarine;
+}
+
 .main{
 
 }
 
-.login{
-    display:flex;
-    gap: 1rem;
-    flex-direction: column;
-    align-items: center;
-    font-size: 50px;
-}
+
 
 .banner{
     display: flex;
     justify-content: center;
+    text-align: center;
+    font-family: Shango-Medium;
+    font-size: 2.25rem;
 }
 
-.middle{
+.login{
+    font-size: 1rem;
+}
+
+.login_form{
+    font-size: 1rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin: auto;
+    justify-self: center;
+    width: 65%;
 }
 
 .footer{
-    position: absolute;
-    bottom: 0%;
+    font-size: 1rem;
     display: flex;
     justify-content: center;
+    align-content: center;
+    bottom: 0%;
+    left: 0%;
+    position: absolute;
+    background-color: #0066cc;
+    width: 100%;
+    height: 2rem;
+    
 }
 
 input[type=text]{
-    display: flex;
-    justify-content: center;
+
     width: 100%;
     padding: 12px 12px;
-    margin: 15px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    max-width: 90%;
+}
+input[type=checkbox]{
+    transform: scale(2);
+}
+
+input[type=button]{
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    width: 65%;
+    margin: 0 auto;
 }

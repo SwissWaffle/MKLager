@@ -9,26 +9,32 @@
         <link rel="stylesheet" href="styles/style.css">
     </head>
     <main>
-        <div class="login">
-            <div class="banner">
-                <img src="content/MK Lager Logo.png" width="50%" height="auto">
-            </div>
-
-            <div class="middle">
-                <form class="logininfo">
-                    <p>Email</p>
-                    <label for="email" name="Username"></label>
-                    <input type="text" id="email" name="email">
-                    <br><br>
-                    <p>Passwort</p>
-                    <label for="passwort" name="Passwort"></label>
-                    <input type="text" id="password" name="password">
-                    <br>
-                    <input type="checkbox" id="remember" name="remember" width="1rem">remember me?
-                </form>
-            </div>
-            <div class="footer"><p>testing</p>
+        <div class="banner">
+            <p style="width: 75%;">
+                MK<span style="font-size: 0.4em;vertical-align:text-top;">&reg;</span> Lager
+            </p>
         </div>
+
+        <div class="footer">
+            <p>foot</p>
+        </div>
+
+        <div class="login">
+            <form class="login_form">
+                <label for="email" name="Email">
+                    Email
+                </label>
+                <input type="text" id="email" name="email">
+                <br>
+                <label for="passwort" name="Passwort">
+                    Passwort
+                </label>
+                <input type="text" id="password" name="password">
+                <br>
+                <span style="text-align: center;"><input type="checkbox" id="remember" name="remember">
+                <label for="remember" name="remember me?"> remember me?</label></span>
+                <br>
+                <input type="button" value="Login">
         </div>
     </main>
 </html>
