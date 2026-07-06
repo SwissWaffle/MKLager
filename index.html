@@ -15,26 +15,38 @@
             </p>
         </div>
 
-        <div class="footer">
-            <p>foot</p>
-        </div>
+        <footer>
+            <p>Copyright 2026</p>
+        </footer>
 
         <div class="login">
             <form class="login_form">
-                <label for="email" name="Email">
-                    Email
-                </label>
-                <input type="text" id="email" name="email">
-                <br>
-                <label for="passwort" name="Passwort">
-                    Passwort
-                </label>
-                <input type="text" id="password" name="password">
-                <br>
-                <span style="text-align: center;"><input type="checkbox" id="remember" name="remember">
-                <label for="remember" name="remember me?"> remember me?</label></span>
-                <br>
-                <input type="button" value="Login">
+                <div class="element_Input">
+                    <label for="email" name="Email">
+                        Email
+                    </label>
+                    <input class="input_field" type="text" id="email" name="email">
+                </div>
+                <div class="element_Input">
+                    <label for="passwort" name="Passwort">
+                        Passwort
+                    </label>
+                    <input class="input_field" type="text" id="password" name="password">
+                </div>
+                <div class="element_Input checkbox">
+                    <input class="checkbox_inner" type="checkbox" id="remember" name="remember">
+                    <label for="remember" name="remember me?"> remember me?</label>
+                </div>
+                <div class="buttons">
+                    <button class="input_button primary">Login</button>
+                    <button class="input_button secondary">Reset</button>
+                </div>
+                <div>
+                    <p class="error_msg">
+                        *Email oder Passwort ist falsch*
+                    </p>
+                </div>
+            </form>
         </div>
     </main>
 </html>

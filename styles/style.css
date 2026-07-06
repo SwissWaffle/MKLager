@@ -11,14 +11,16 @@
 }
 html{
     font-size: 20px;
-    background-color: aquamarine;
+    background-color:#f9f9f9;
+}
+
+body{
+    margin: 0;
 }
 
 .main{
 
 }
-
-
 
 .banner{
     display: flex;
@@ -28,8 +30,17 @@ html{
     font-size: 2.25rem;
 }
 
+footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background: #d4d4d4;
+    display: flex;
+    justify-content: center;
+}
+
 .login{
-    font-size: 1rem;
+    padding: 2rem;
 }
 
 .login_form{
@@ -38,40 +49,67 @@ html{
     flex-direction: column;
     justify-content: center;
     justify-self: center;
-    width: 65%;
+    width: 100%;
+    max-width: 600px;
+    gap: 1rem;
+}
+.element_Input{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
 }
 
-.footer{
+.element_Input label{
     font-size: 1rem;
+    font-weight: 400;
+}
+
+.element_Input.checkbox{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+}
+
+.element_Input .input_field {
+    border: 1px solid black;
+    min-height: 1rem;
+    padding: .5rem .75rem;
+}
+
+.input_button{
+    min-height: 1.5rem;
+    font-size: .85rem;
+    width: fit-content;
+    border: 1px solid black;
+}
+
+.buttons{
     display: flex;
     justify-content: center;
-    align-content: center;
-    bottom: 0%;
-    left: 0%;
-    position: absolute;
-    background-color: #0066cc;
-    width: 100%;
-    height: 2rem;
-    
+    gap: .5rem;
 }
 
-input[type=text]{
-
-    width: 100%;
-    padding: 12px 12px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    max-width: 90%;
+button{
+    margin-top: 1rem;
+    background: #e4e4e4;
 }
+
+button:hover{
+    transition: .2s ease;
+    background: #d1d1d1;
+}
+
+.error_msg{
+    display: none;
+    justify-content: center;
+    color: #d80000;
+    margin-top: 1rem;
+}
+
 input[type=checkbox]{
     transform: scale(2);
-}
-
-input[type=button]{
-    font-size: 1rem;
-    display: flex;
-    justify-content: center;
-    vertical-align: middle;
-    width: 65%;
-    margin: 0 auto;
 }
