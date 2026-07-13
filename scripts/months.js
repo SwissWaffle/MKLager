@@ -1,4 +1,4 @@
-const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const months = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember","Januar","Februar"];
 
 const d = new Date();
 let currentmonthmonth = months[d.getMonth()];
