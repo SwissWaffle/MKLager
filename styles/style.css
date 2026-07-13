@@ -113,3 +113,19 @@ button:hover{
 input[type=checkbox]{
     transform: scale(2);
 }
+
+.home_buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+}
+
+.home_buttons .buttons{
+    flex-direction: column;
+    align-items: center;
+}
+
+.home_buttons .buttons button{
+    width: 100%;
+}
