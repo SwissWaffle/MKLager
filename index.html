@@ -15,11 +15,9 @@
             </p>
         </div>
 
-        <footer>
-            <p>Copyright 2026</p>
-        </footer>
 
-        <div style="display: none;" class="login">
+
+        <div class="login">
             <form class="login_form">
                 <div class="element_Input">
                     <label for="email" name="Email">
@@ -48,6 +46,7 @@
                 </div>
             </form>
         </div>
+
         <div class="home">
             <div class="home_buttons">
                 <div class="buttons">
@@ -59,5 +58,85 @@
                 </div>
             </div>
         </div>
+
+        <div class="filter">
+            <form class="filter_input">
+                <div class="filter_row">
+                    <div class="element_Input">
+                        <label for="name" name="Name">
+                            Name
+                        </label>
+                        <input class="input_field" type="text" id="name" name="name">
+                    </div>
+                    <div class="element_Input">
+                        <label for="artikelnr" name="Artikel Nr.">
+                            Artikel Nr.
+                        </label>
+                        <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
+                    </div>
+                </div>
+                <div class="filter_row">
+                    <div class="element_Input">
+                        <label for="pflege_linie" name="Pflege Linie">
+                            Pflege Linie
+                        </label>
+                        <select class="select_field" id="pflege_linie" name="pflege linie">
+                            <option value="none"></option>
+                            <option value="hautpflege">Hautpflege</option>
+                            <option value="koerperpflege">K&#246;rperpflege</option>
+                        </select>
+                    </div>
+                    <div class="element_Input">
+                        <label for="kategorie" name="Kategorie">
+                            Kategorie
+                        </label>
+                        <select class="select_field" id="kategorie" name="kategorie">
+                            <option value="none"></option>
+                            <option value="hautpflege">Hautpflege</option>
+                            <option value="koerperpflege">K&#246;rperpflege</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter_row">
+                    <div class="element_Input">
+                        <label for="farbe" name="Farbe">
+                            Farbe
+                        </label>
+                        <input class="input_field" type="text" id="farbe" name="farbe">
+                    </div>
+                    <div class="element_Input">
+                        <label for="hauttyp" name="Hauttyp">
+                            Hauttyp
+                        </label>
+                        <select class="select_field" id="hauttyp" name="hauttyp">
+                            <option value="none"></option>
+                            <option value="hautpflege">Hautpflege</option>
+                            <option value="koerperpflege">K&#246;rperpflege</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="filter_row">
+                    <div class="element_Input">
+                        <label for="artikelnr" name="Artikel Nr.">
+                            Artikel Nr.
+                        </label>
+                        <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
+                    </div>
+                    <div class="element_Input">
+                        <label for="name" name="Name">
+                            Name
+                        </label>
+                        <input class="input_field" type="text" id="name" name="name">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="input_button primary">Suchen</button>
+                    <button class="input_button secondary">Reset</button>
+                </div>
+            </form>
+        </div>
+                <footer>
+            <p>Copyright 2026</p>
+        </footer>
     </main>
 </html>

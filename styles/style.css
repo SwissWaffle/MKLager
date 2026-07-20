@@ -31,7 +31,7 @@ body{
 }
 
 footer{
-    position: absolute;
+    position:relative;
     width: 100%;
     bottom: 0;
     background: #d4d4d4;
@@ -40,6 +40,7 @@ footer{
 }
 
 .login{
+    display: none;
     padding: 2rem;
 }
 
@@ -80,6 +81,12 @@ footer{
     padding: .5rem .75rem;
 }
 
+.element_Input .select_field{
+    border: 1px solid black;
+    min-height: 1rem;
+    padding: .5rem .75rem;
+}
+
 .input_button{
     min-height: 1.5rem;
     font-size: .85rem;
@@ -90,6 +97,8 @@ footer{
 .buttons{
     display: flex;
     justify-content: center;
+    align-items: center;
+    align-content: center;
     gap: .5rem;
 }
 
@@ -114,6 +123,11 @@ input[type=checkbox]{
     transform: scale(2);
 }
 
+.home{
+    display: none;
+    padding: 0.5rem;
+}
+
 .home_buttons{
     display: flex;
     flex-direction: column;
@@ -127,5 +141,32 @@ input[type=checkbox]{
 }
 
 .home_buttons .buttons button{
+    width: 100%;
+}
+
+.filter{
+    display: block;
+    padding: 2rem;
+}
+
+.filter_input{
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    width: 100%;
+    max-width: 600px;
+    gap: 1rem;
+}
+
+.filter_row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+.filter_row .element_Input{
     width: 100%;
 }
