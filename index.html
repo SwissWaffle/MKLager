@@ -10,7 +10,7 @@
     </head>
     <main>
         <div class="banner">
-            <p style="width: 75%;">
+            <p class="banner_text" ="width: 75%;">
                 MK<span style="font-size: 0.4em;vertical-align:text-top;">&reg;</span> Lager
             </p>
         </div>
@@ -36,8 +36,8 @@
                     <label for="remember" name="remember me?"> remember me?</label>
                 </div>
                 <div class="buttons">
-                    <button class="input_button primary">Login</button>
-                    <button class="input_button secondary">Reset</button>
+                    <button type="button" class="input_button primary">Login</button>
+                    <button type="button" class="input_button secondary">Reset</button>
                 </div>
                 <div>
                     <p class="error_msg">
@@ -50,10 +50,10 @@
         <div class="home">
             <div class="home_buttons">
                 <div class="buttons">
-                    <button class="input_button" id="currentmonth"></button>
-                    <button class="input_button" id="nextmonth"></button>
-                    <button class="input_button" id="next2month"></button>
-                    <button class="input_button">Spezifisch Suchen</button>
+                    <button type="button" class="input_button" id="currentmonth"></button>
+                    <button type="button" class="input_button" id="nextmonth"></button>
+                    <button type="button" class="input_button" id="next2month"></button>
+                    <button type="button" class="input_button">Spezifisch Suchen</button>
                     <script src="scripts/months.js"></script>
                 </div>
             </div>
@@ -61,81 +61,67 @@
 
         <div class="filter">
             <form class="filter_input">
-                <div class="filter_row">
-                    <div class="element_Input">
-                        <label for="name" name="Name">
-                            Name
-                        </label>
-                        <input class="input_field" type="text" id="name" name="name">
-                    </div>
-                    <div class="element_Input">
-                        <label for="artikelnr" name="Artikel Nr.">
-                            Artikel Nr.
-                        </label>
-                        <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
-                    </div>
+                <div class="element_Input">
+                    <label for="name" name="Name">
+                        Name
+                    </label>
+                    <input class="input_field" type="text" id="name" name="name">
                 </div>
-                <div class="filter_row">
-                    <div class="element_Input">
-                        <label for="pflege_linie" name="Pflege Linie">
-                            Pflege Linie
-                        </label>
-                        <select class="select_field" id="pflege_linie" name="pflege linie">
-                            <option value="none"></option>
-                            <option value="hautpflege">Hautpflege</option>
-                            <option value="koerperpflege">K&#246;rperpflege</option>
-                        </select>
-                    </div>
-                    <div class="element_Input">
-                        <label for="kategorie" name="Kategorie">
-                            Kategorie
-                        </label>
-                        <select class="select_field" id="kategorie" name="kategorie">
-                            <option value="none"></option>
-                            <option value="hautpflege">Hautpflege</option>
-                            <option value="koerperpflege">K&#246;rperpflege</option>
-                        </select>
-                    </div>
+                <div class="element_Input">
+                    <label for="artikelnr" name="Artikel Nr.">
+                        Artikel Nr.
+                    </label>
+                    <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
                 </div>
-                <div class="filter_row">
-                    <div class="element_Input">
-                        <label for="farbe" name="Farbe">
-                            Farbe
-                        </label>
-                        <input class="input_field" type="text" id="farbe" name="farbe">
-                    </div>
-                    <div class="element_Input">
-                        <label for="hauttyp" name="Hauttyp">
-                            Hauttyp
-                        </label>
-                        <select class="select_field" id="hauttyp" name="hauttyp">
-                            <option value="none"></option>
-                            <option value="hautpflege">Hautpflege</option>
-                            <option value="koerperpflege">K&#246;rperpflege</option>
-                        </select>
-                    </div>
+                <div class="element_Input">
+                    <label for="pflege_linie" name="Pflege Linie">
+                        Pflege Linie
+                    </label>
+                    <select class="select_field" id="pflege_linie" name="pflege linie">
+                        <option value="none"></option>
+                        <option value="hautpflege">Hautpflege</option>
+                        <option value="koerperpflege">K&#246;rperpflege</option>
+                    </select>
                 </div>
-                <div class="filter_row">
-                    <div class="element_Input">
-                        <label for="artikelnr" name="Artikel Nr.">
-                            Artikel Nr.
-                        </label>
-                        <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
-                    </div>
-                    <div class="element_Input">
-                        <label for="name" name="Name">
-                            Name
-                        </label>
-                        <input class="input_field" type="text" id="name" name="name">
-                    </div>
+                <div class="element_Input">
+                    <label for="kategorie" name="Kategorie">
+                        Kategorie
+                    </label>
+                    <select class="select_field" id="kategorie" name="kategorie">
+                        <option value="none"></option>
+                        <option value="hautpflege">Hautpflege</option>
+                        <option value="koerperpflege">K&#246;rperpflege</option>
+                    </select>
+                </div>
+                <div class="element_Input">
+                    <label for="farbe" name="Farbe">
+                        Farbe
+                    </label>
+                    <input class="input_field" type="text" id="farbe" name="farbe">
+                </div>
+                <div class="element_Input">
+                    <label for="hauttyp" name="Hauttyp">
+                        Hauttyp
+                    </label>
+                    <select class="select_field" id="hauttyp" name="hauttyp">
+                        <option value="none"></option>
+                        <option value="hautpflege">Hautpflege</option>
+                        <option value="koerperpflege">K&#246;rperpflege</option>
+                    </select>
+                </div>
+                <div class="element_Input">
+                    <label for="datum" name="datum">
+                        Datum
+                    </label>
+                    <input type="month" id="datum" name="datum">
                 </div>
                 <div class="buttons">
-                    <button class="input_button primary">Suchen</button>
-                    <button class="input_button secondary">Reset</button>
+                <button type="button" class="input_button primary">Suchen</button>
+                <button type="button" class="input_button secondary">Reset</button>
                 </div>
             </form>
         </div>
-                <footer>
+        <footer>
             <p>Copyright 2026</p>
         </footer>
     </main>

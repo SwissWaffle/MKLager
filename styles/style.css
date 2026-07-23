@@ -28,10 +28,14 @@ body{
     text-align: center;
     font-family: Shango-Medium;
     font-size: 2.25rem;
+
+}
+.banner_text{
+    margin: 1rem;
 }
 
 footer{
-    position:relative;
+    position:fixed;
     width: 100%;
     bottom: 0;
     background: #d4d4d4;
@@ -41,7 +45,7 @@ footer{
 
 .login{
     display: none;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .login_form{
@@ -125,7 +129,7 @@ input[type=checkbox]{
 
 .home{
     display: none;
-    padding: 0.5rem;
+    padding: 1rem;
 }
 
 .home_buttons{
@@ -146,7 +150,7 @@ input[type=checkbox]{
 
 .filter{
     display: block;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .filter_input{
