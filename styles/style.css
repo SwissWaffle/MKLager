@@ -43,6 +43,12 @@ footer{
     justify-content: center;
 }
 
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
 .login{
     display: none;
     padding: 1rem;
@@ -149,7 +155,7 @@ input[type=checkbox]{
 }
 
 .filter{
-    display: block;
+    display: none;
     padding: 1rem;
 }
 
@@ -173,4 +179,26 @@ input[type=checkbox]{
 }
 .filter_row .element_Input{
     width: 100%;
+}
+
+.eintrag_create{
+    display: block;
+    padding: 1rem;
+}
+
+.eintrag_input{
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    width: 100%;
+    max-width: 600px;
+    gap: 1rem;
+}
+
+.eintrag_input p{
+    display: flex;
+    justify-content: center;
+    margin: 0;
 }

@@ -60,6 +60,7 @@
         </div>
 
         <div class="filter">
+            <div class="title">Filter setzen</div>
             <form class="filter_input">
                 <div class="element_Input">
                     <label for="name" name="Name">
@@ -110,7 +111,7 @@
                     </select>
                 </div>
                 <div class="element_Input">
-                    <label for="datum" name="datum">
+                    <label for="datum" name="Datum">
                         Datum
                     </label>
                     <input type="month" id="datum" name="datum">
@@ -118,6 +119,41 @@
                 <div class="buttons">
                 <button type="button" class="input_button primary">Suchen</button>
                 <button type="button" class="input_button secondary">Reset</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="eintrag_create">
+            <div class="title">Eintrag erstellen</div>
+            <form class="eintrag_input">
+                <div class="element_Input">
+                    <label for="name" name="Name">
+                        Name
+                    </label>
+                    <input class="input_field" type="text" id="name" name="name">
+                </div>
+                <p> Oder</p>
+                <div class="element_Input">
+                    <label for="artikelnr" name="Artikel Nr.">
+                        Artikel Nr.
+                    </label>
+                    <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
+                </div>
+                <div class="element_Input">
+                    <label for="datum" name="Datum">
+                        Datum
+                    </label>
+                    <input type="month" id="datum" name="datum">
+                </div>
+                <div class="element_Input">
+                    <label for="menge" name="Menge">
+                        Menge
+                    </label>
+                    <input class="input_field" type="text" id="menge" name="menge">
+                </div>
+                <div class="buttons">
+                <button type="button" class="input_button primary">Erstellen</button>
+                <button type="button" class="input_button secondary">Abbrechen</button>
                 </div>
             </form>
         </div>
