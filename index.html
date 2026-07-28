@@ -15,8 +15,6 @@
             </p>
         </div>
 
-
-
         <div class="login">
             <form class="login_form">
                 <div class="element_Input">
@@ -114,7 +112,7 @@
                     <label for="datum" name="Datum">
                         Datum
                     </label>
-                    <input type="month" id="datum" name="datum">
+                    <input class="input_field" type="month" id="datum" name="datum">
                 </div>
                 <div class="buttons">
                 <button type="button" class="input_button primary">Suchen</button>
@@ -139,17 +137,19 @@
                     </label>
                     <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
                 </div>
-                <div class="element_Input">
-                    <label for="datum" name="Datum">
-                        Datum
-                    </label>
-                    <input type="month" id="datum" name="datum">
-                </div>
-                <div class="element_Input">
-                    <label for="menge" name="Menge">
-                        Menge
-                    </label>
-                    <input class="input_field" type="text" id="menge" name="menge">
+                <div class="row">
+                    <div class="element_Input">
+                        <label for="datum" name="Datum">
+                            Datum
+                        </label>
+                        <input class="input_field" type="month" id="datum" name="datum">
+                    </div>
+                    <div class="element_Input">
+                        <label for="menge" name="Menge">
+                            Menge
+                        </label>
+                        <input class="input_field" type="number" id="menge" name="menge">
+                    </div>
                 </div>
                 <div class="buttons">
                 <button type="button" class="input_button primary">Erstellen</button>
@@ -157,6 +157,67 @@
                 </div>
             </form>
         </div>
+
+        <div class="eintrag_change">
+            <div class="title">Eintrag ändern</div>
+            <form class="eintrag_input">
+                <div class="element_Input">
+                    <label for="name" name="Name">
+                        Name
+                    </label>
+                    <input class="input_field" type="text" id="name" name="name" readonly>
+                </div>
+                <div class="element_Input">
+                    <label for="artikelnr" name="Artikel Nr.">
+                        Artikel Nr.
+                    </label>
+                    <input class="input_field" type="text" id="artikelnr" name="artikel nr." readonly value="test">
+                </div>
+                <div class="element_Input">
+                    <label for="pflege_linie" name="Pflege Linie">
+                        Pflege Linie
+                    </label>
+                    <input class="input_field" type="text" id="pflege_linie" name="pflege_linie" readonly>
+                </div>
+                <div class="element_Input">
+                    <label for="kategorie" name="Kategorie">
+                        Kategorie
+                    </label>
+                    <input class="input_field" type="text" id="kategorie" name="kategorie" readonly>
+                </div>
+                <div class="element_Input">
+                    <label for="farbe" name="Farbe">
+                        Farbe
+                    </label>
+                    <input class="input_field" type="text" id="farbe" name="farbe" readonly>
+                </div>
+                <div class="element_Input">
+                    <label for="hauttyp" name="Hauttyp">
+                        Hauttyp
+                    </label>
+                    <input class="input_field" type="text" id="hauttyp" name="hauttyp" readonly>
+                </div>
+                <div class="row">
+                    <div class="element_Input">
+                        <label for="datum" name="Datum">
+                            Datum
+                        </label>
+                        <input class="input_field" type="month" id="datum" name="datum">
+                    </div>
+                    <div class="element_Input">
+                        <label for="menge" name="Menge">
+                            Menge
+                        </label>
+                        <input class="input_field" type="number" id="menge" name="menge">
+                    </div>
+                </div>
+                <div class="buttons">
+                <button type="button" class="input_button primary">Speichern</button>
+                <button type="button" class="input_button secondary">Abbrechen</button>
+                </div>
+            </form>
+        </div>
+        <div class="footer_buffer"></div>
         <footer>
             <p>Copyright 2026</p>
         </footer>
