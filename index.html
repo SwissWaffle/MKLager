@@ -9,13 +9,14 @@
         <link rel="stylesheet" href="styles/style.css">
     </head>
     <main>
+
         <div class="banner">
-            <p class="banner_text" ="width: 75%;">
+            <p class="banner_text">
                 MK<span style="font-size: 0.4em;vertical-align:text-top;">&reg;</span> Lager
             </p>
         </div>
 
-        <div class="login">
+        <div class="login" id="login">
             <form class="login_form">
                 <div class="element_Input">
                     <label for="email" name="Email">
@@ -34,8 +35,9 @@
                     <label for="remember" name="remember me?"> remember me?</label>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="input_button primary">Login</button>
-                    <button type="button" class="input_button secondary">Reset</button>
+                    <button type="button" class="input_button" onclick="disHome()">Login</button>
+                    <button type="button" class="input_button">Reset</button>
+                    <script src="scripts/transitions.js"></script>
                 </div>
                 <div>
                     <p class="error_msg">
@@ -45,19 +47,24 @@
             </form>
         </div>
 
-        <div class="home">
+        <div class="home" id="home">
             <div class="home_buttons">
+                <div class="user_info">
+                    <p id="username">Username</p>
+                    <button type="button" class="input_button" onclick="disLogin()">Logout</button>
+                </div>
                 <div class="buttons">
-                    <button type="button" class="input_button" id="currentmonth"></button>
-                    <button type="button" class="input_button" id="nextmonth"></button>
-                    <button type="button" class="input_button" id="next2month"></button>
-                    <button type="button" class="input_button">Spezifisch Suchen</button>
+                    <button type="button" class="input_button" id="currentmonth" onclick="disEintragDisplay()"></button>
+                    <button type="button" class="input_button" id="nextmonth" onclick="disEintragDisplay()"></button>
+                    <button type="button" class="input_button" id="next2month" onclick="disEintragDisplay()"></button>
+                    <button type="button" class="input_button" onclick="disFilter()">Spezifisch Suchen</button>
                     <script src="scripts/months.js"></script>
+                    <script src="scripts/transitions.js"></script>
                 </div>
             </div>
         </div>
 
-        <div class="filter">
+        <div class="filter" id="filter">
             <div class="title">Filter setzen</div>
             <form class="filter_input">
                 <div class="element_Input">
@@ -115,13 +122,30 @@
                     <input class="input_field" type="month" id="datum" name="datum">
                 </div>
                 <div class="buttons">
-                <button type="button" class="input_button primary">Suchen</button>
-                <button type="button" class="input_button secondary">Reset</button>
+                    <button type="button" class="input_button" onclick="disEintragDisplay()">Suchen</button>
+                    <button type="button" class="input_button">Reset</button>
+                    <button type="button" class="input_button" onclick="disHome()">Zurück</button>
+                    <script src="scripts/transitions.js"></script>
                 </div>
             </form>
         </div>
 
-        <div class="eintrag_create">
+        <div class="eintrag_display" id="eintrag_display">
+            <div class="title">Einträge anzeigen</div>
+            <div class="buttons">
+                <button type="button" class="input_button" onclick="disHome()">Zurück</button>
+                <button type="button" class="input_button" onclick="disEintragCreate()">Eintrag erstellen</button>
+                <button type="button" class="input_button" onclick="disEintragChange()">(Temp) Eintrag ändern</button>
+                <script src="scripts/transitions.js"></script>
+            </div>
+            <div class="eintrag_lineup">
+                
+            </div>
+        </div>
+
+
+
+        <div class="eintrag_create" id="eintrag_create">
             <div class="title">Eintrag erstellen</div>
             <form class="eintrag_input">
                 <div class="element_Input">
@@ -152,13 +176,14 @@
                     </div>
                 </div>
                 <div class="buttons">
-                <button type="button" class="input_button primary">Erstellen</button>
-                <button type="button" class="input_button secondary">Abbrechen</button>
+                    <button type="button" class="input_button" onclick="disEintragDisplay()">Erstellen</button>
+                    <button type="button" class="input_button" onclick="disEintragDisplay()">Abbrechen</button>
+                    <script src="scripts/transitions.js"></script>
                 </div>
             </form>
         </div>
 
-        <div class="eintrag_change">
+        <div class="eintrag_change" id="eintrag_change">
             <div class="title">Eintrag ändern</div>
             <form class="eintrag_input">
                 <div class="element_Input">
@@ -212,8 +237,9 @@
                     </div>
                 </div>
                 <div class="buttons">
-                <button type="button" class="input_button primary">Speichern</button>
-                <button type="button" class="input_button secondary">Abbrechen</button>
+                    <button type="button" class="input_button" onclick="disEintragDisplay()">Speichern</button>
+                    <button type="button" class="input_button" onclick="disEintragDisplay()">Abbrechen</button>
+                    <script src="scripts/transitions.js"></script>
                 </div>
             </form>
         </div>
