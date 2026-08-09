@@ -36,7 +36,6 @@
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="disHome()">Login</button>
-                    <button type="button" class="input_button">Reset</button>
                     <script src="scripts/transitions.js"></script>
                 </div>
                 <div>
@@ -58,6 +57,7 @@
                     <button type="button" class="input_button" id="nextmonth" onclick="disEintragDisplay()"></button>
                     <button type="button" class="input_button" id="next2month" onclick="disEintragDisplay()"></button>
                     <button type="button" class="input_button" onclick="disFilter()">Spezifisch Suchen</button>
+                    <button type="button" class="input_button" onclick="disEintragCreate()">Eintrag erstellen</button>
                     <script src="scripts/months.js"></script>
                     <script src="scripts/transitions.js"></script>
                 </div>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="disEintragDisplay()">Suchen</button>
-                    <button type="button" class="input_button">Reset</button>
+                    <button type="button" class="input_button">Löschen</button>
                     <button type="button" class="input_button" onclick="disHome()">Zurück</button>
                     <script src="scripts/transitions.js"></script>
                 </div>
@@ -134,7 +134,6 @@
             <div class="title">Einträge anzeigen</div>
             <div class="buttons">
                 <button type="button" class="input_button" onclick="disHome()">Zurück</button>
-                <button type="button" class="input_button" onclick="disEintragCreate()">Eintrag erstellen</button>
                 <button type="button" class="input_button" onclick="disEintragChange()">(Temp) Eintrag ändern</button>
                 <script src="scripts/transitions.js"></script>
             </div>
@@ -149,35 +148,26 @@
             <div class="title">Eintrag erstellen</div>
             <form class="eintrag_input">
                 <div class="element_Input">
-                    <label for="name" name="Name">
-                        Name
-                    </label>
-                    <input class="input_field" type="text" id="name" name="name">
-                </div>
-                <p> Oder</p>
-                <div class="element_Input">
                     <label for="artikelnr" name="Artikel Nr.">
                         Artikel Nr.
                     </label>
                     <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
                 </div>
-                <div class="row">
-                    <div class="element_Input">
-                        <label for="datum" name="Datum">
-                            Datum
-                        </label>
-                        <input class="input_field" type="month" id="datum" name="datum">
-                    </div>
-                    <div class="element_Input">
-                        <label for="menge" name="Menge">
-                            Menge
-                        </label>
-                        <input class="input_field" type="number" id="menge" name="menge">
-                    </div>
+                <div class="element_Input">
+                    <label for="datum" name="Datum">
+                        Datum
+                    </label>
+                    <input class="input_field" type="month" id="datum" name="datum">
+                </div>
+                <div class="element_Input">
+                    <label for="menge" name="Menge">
+                        Menge
+                    </label>
+                    <input class="input_field" type="number" id="menge" name="menge">
                 </div>
                 <div class="buttons">
-                    <button type="button" class="input_button" onclick="disEintragDisplay()">Erstellen</button>
-                    <button type="button" class="input_button" onclick="disEintragDisplay()">Abbrechen</button>
+                    <button type="button" class="input_button" onclick="disHome()">Erstellen</button>
+                    <button type="button" class="input_button" onclick="disHome()">Abbrechen</button>
                     <script src="scripts/transitions.js"></script>
                 </div>
             </form>
@@ -222,19 +212,17 @@
                     </label>
                     <input class="input_field" type="text" id="hauttyp" name="hauttyp" readonly>
                 </div>
-                <div class="row">
-                    <div class="element_Input">
-                        <label for="datum" name="Datum">
-                            Datum
-                        </label>
-                        <input class="input_field" type="month" id="datum" name="datum">
-                    </div>
-                    <div class="element_Input">
-                        <label for="menge" name="Menge">
-                            Menge
-                        </label>
-                        <input class="input_field" type="number" id="menge" name="menge">
-                    </div>
+                <div class="element_Input">
+                    <label for="datum" name="Datum">
+                        Datum
+                    </label>
+                    <input class="input_field" type="month" id="datum" name="datum">
+                </div>
+                <div class="element_Input">
+                    <label for="menge" name="Menge">
+                        Menge
+                    </label>
+                    <input class="input_field" type="number" id="menge" name="menge">
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="disEintragDisplay()">Speichern</button>
