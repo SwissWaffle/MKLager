@@ -101,6 +101,7 @@ footer p{
 
 .element_Input .input_field {
     border: 1px solid black;
+    width: 100%;
     min-height: 1rem;
     padding: .5rem;
     font-size: .9rem;
