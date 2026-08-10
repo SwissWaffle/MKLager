@@ -80,7 +80,6 @@ footer p{
 .element_Input{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: .25rem;
     width: 100%;
     font-weight: 400;
@@ -120,10 +119,8 @@ footer p{
 .element_Input .date_field{
     border: 1px solid black;
     min-height: 1rem;
-    max-width: 100%;
     padding: .5rem;
     font-size: .9rem;
-    justify-content: center;
 }
 
 .input_button{
