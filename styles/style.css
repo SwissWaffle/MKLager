@@ -104,6 +104,7 @@ footer p{
     min-height: 1rem;
     padding: .5rem;
     font-size: .9rem;
+    font-weight: 400;
 }
 
 .element_Input input:read-only{
@@ -119,7 +120,6 @@ footer p{
 .element_Input .date_field{
     border: 1px solid black;
     min-height: 1rem;
-    max-width: 100%;
     padding: .5rem;
     font-size: .9rem;
 }
@@ -208,14 +208,6 @@ input[type=checkbox]{
     gap: 1rem;
 }
 
-.row{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
-}
-
 .eintrag_create{
     display: none;
     padding: 1rem;
@@ -256,5 +248,48 @@ input[type=checkbox]{
     justify-self: center;
     width: 100%;
     max-width: 600px;
-    gap: 1rem;
+    gap: .5rem;
+    padding: 1rem;
+}
+
+.eintrag_single{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    gap: .5rem;
+    padding: .5rem;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: .25rem;
+    width: 100%;
+}
+
+.divide{
+    background: black;
+    width: 1px;
+
+}
+
+.name{
+    width: 90%;
+}
+
+.date{
+    width: 18%;
+}
+
+.menge{
+    width: 10%;
+}
+
+.extra{
+    width: 70%;
+}
+
+.input_button.edit{
+    margin-top: 0;
+    width: 10%;
 }
