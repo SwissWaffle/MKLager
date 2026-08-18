@@ -10,6 +10,18 @@
 
 export default {
 	async fetch(request, env, ctx) {
-		return new Response("My fellow Americans, ask not what your country can do for you, ask what you can do for your country.", { status: 200 });
-	},
-};
+		const url = new URL(request.url);
+    	const path = url.pathname;
+    	const method = request.method;
+
+
+		try{
+			if(path === '/api/login' && method === 'GET'){
+				return response.json({message: "Login successful"});
+			};
+		} catch (error) {
+			return new Response(error.message, {status: 500});
+		}
+	}
+
+}
