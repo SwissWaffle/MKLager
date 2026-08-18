@@ -10,6 +10,6 @@
 
 export default {
 	async fetch(request, env, ctx) {
-		return new Response("Hello World!");
+		return new Response("My fellow Americans, ask not what your country can do for you, ask what you can do for your country.", { status: 200 });
 	},
 };
