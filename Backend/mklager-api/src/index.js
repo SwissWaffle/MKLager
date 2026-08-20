@@ -16,8 +16,18 @@ export default {
 
 
 		try{
-			if(path === '/api/login' && method === 'GET'){
-				return response.json({message: "Login successful"});
+			if(path === '/login' && method === 'GET'){
+				return new Response(JSON.stringify({message: "Login successful"}), {
+					status: 200,
+					headers: {"Access-Control-Allow-Origin": "*"}
+				});
+			};
+
+			if(path === '/data' && method === 'GET'){
+				return new Response(JSON.stringify({message: "Data retrieved successfully"}), {
+					status: 200,
+					headers: {"Access-Control-Allow-Origin": "*"}
+				});
 			};
 		} catch (error) {
 			return new Response(error.message, {status: 500});
