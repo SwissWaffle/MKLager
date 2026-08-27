@@ -12,5 +12,8 @@
     "@cloudflare/vitest-pool-workers": "^0.21.0",
     "vitest": "~4.1.0",
     "wrangler": "^4.124.0"
+  },
+  "dependencies": {
+    "@neondatabase/neon-js": "^0.7.0-beta"
   }
 }
