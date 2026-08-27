@@ -7,10 +7,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-const env = {
-	NEON_DATA_API_URL: process.env.NEON_DATA_API_URL,
-	VITE_NEON_DATA_API_URL: process.env.VITE_NEON_DATA_API_URL,
-};
+const env = import.meta.env;
 export default {
 	async fetch(request, ctx) {
 		const url = new URL(request.url);
