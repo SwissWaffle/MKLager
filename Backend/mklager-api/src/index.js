@@ -7,7 +7,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-import { env } from "cloudflare:env";
+import { env } from "cloudflare:workers";
 export default {
 	async fetch(request, ctx) {
 		const url = new URL(request.url);
