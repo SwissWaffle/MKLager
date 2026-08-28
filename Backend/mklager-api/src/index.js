@@ -7,9 +7,8 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-import { env } from "cloudflare:workers";
 export default {
-	async fetch(request, ctx) {
+	async fetch(request, env) {
 		const url = new URL(request.url);
 		const path = url.pathname;
 		const method = request.method;
@@ -17,25 +16,47 @@ export default {
 			"Access-Control-Allow-Origin": "*",
 			"Access-Control-Allow-Headers": "Authorization, Content-Type",
 			"Access-Control-Allow-Methods": "GET, OPTIONS",
+			"Content-Type": "application/json",
 		};
 
+		if (method === 'OPTIONS') {
+			return new Response(null, { status: 204, headers: corsHeaders });
+		}
 
-		try{
-			if(path === '/login' && method === 'GET'){
-				return new Response(JSON.stringify({message: "Login successful"}), {
-					status: 200,
-					headers: {"Access-Control-Allow-Origin": "*"}
-				});
-			};
+		if (path !== '/data' || method !== 'GET') {
+			return new Response(JSON.stringify({ error: 'Not found' }), {
+				status: 404,
+				headers: corsHeaders,
+			});
+		}
 
-			if(path === '/data' && method === 'GET'){
-				return new Response(JSON.stringify({message: "Data retrieved successfully"}), {
-					status: 200,
-					headers: {"Access-Control-Allow-Origin": "*"}
-				});
-			};
+		if (!env?.NEON_DATA_API_URL) {
+			return new Response(JSON.stringify({ error: 'NEON_DATA_API_URL is not configured' }), {
+				status: 500,
+				headers: corsHeaders,
+			});
+		}
+
+		try {
+			const neonResponse = await fetch(`${env.NEON_DATA_API_URL}/Lager?select=*`, {
+				headers: {
+					Accept: 'application/json',
+					...(request.headers.get('Authorization')
+						? { Authorization: request.headers.get('Authorization') }
+						: {}),
+				},
+			});
+
+			const body = await neonResponse.text();
+			return new Response(body, {
+				status: neonResponse.status,
+				headers: corsHeaders,
+			});
 		} catch (error) {
-			return new Response(error.message, {status: 500});
+			return new Response(JSON.stringify({ error: error.message }), {
+				status: 502,
+				headers: corsHeaders,
+			});
 		}
 	}
-}
+};
