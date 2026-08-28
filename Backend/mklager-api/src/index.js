@@ -7,8 +7,12 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
+const env = {
+	NEON_DATA_API_URL: "https://ep-broad-hat-a2mbfm2b.apirest.eu-central-1.aws.neon.tech/neondb/rest/v1"
+};
+
 export default {
-	async fetch(request, env) {
+	async fetch(request) {
 		const url = new URL(request.url);
 		const path = url.pathname;
 		const method = request.method;

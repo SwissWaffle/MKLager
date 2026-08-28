@@ -1,12 +1,9 @@
 const url = "https://mklager-api.nic-weber.workers.dev"
 
-async function getData(path, info, query){
+async function getData(path){
     try {
-        info = {
-            email: document.getElementById('email').value,
-            password: document.getElementById('password').value
-        };
-        const response = await fetch(url + path, info, query, {
+        const response = await fetch(url + path, {
+
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
