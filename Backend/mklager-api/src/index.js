@@ -68,7 +68,7 @@ export default {
 				}),
 
 			
-			return new Response(body, {
+			return new Response(neonResponse.body, {
 				status: neonResponse.status,
 				headers: corsHeaders,
 			});
