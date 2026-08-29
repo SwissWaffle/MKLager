@@ -64,9 +64,10 @@ export default {
 							? { Authorization: request.headers.get('Authorization') }
 							: {}),
 					},
+					body: await request.text(),
 				}),
 
-			const body = await neonResponse.text();
+			
 			return new Response(body, {
 				status: neonResponse.status,
 				headers: corsHeaders,
