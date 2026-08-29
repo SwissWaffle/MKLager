@@ -25,7 +25,7 @@ async function displayData(path) {
     const output = document.getElementById('data_output');
 
     try {
-        output.textContent = JSON.stringify(await getData(path), null, 2);
+        output.textContent = JSON.stringify(await getData(path));
     } catch (error) {
         output.textContent = `Fehler beim Laden der Daten: ${error.message}`;
     }
