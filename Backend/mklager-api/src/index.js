@@ -9,14 +9,8 @@
  * It enforces authentication on the protected /data route and proxies the login
  * flow to the Neon Auth token endpoint.
  */
-
-
-import { createClient } from "@neondatabase/neon-js";
-
-
-
 export default {
-  async fetch(request, data, _ctx) {
+  async fetch(request, env = {}, _ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
     const method = request.method;
@@ -40,20 +34,23 @@ export default {
       }
 
       try {
-        const client = createClient({
-          authUrl: process.env.NEON_AUTH_API_URL,
-          dataUrl: process.env.NEON_DATA_API_URL,
+        const body = await request.json();
+        const neonResponse = await fetch(`${env.NEON_AUTH_API_URL}/token`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: body.email,
+            password: body.password,
+          }),
         });
-        const neonResponse = await fetch(client.auth.signIn.email({
-          email: data.email,
-          password: data.password,
-          })
-        );
-          return new Response(neonResponse.body, {
+
+        return new Response(neonResponse.body, {
           status: neonResponse.status,
           headers: corsHeaders,
-          });        
-        } catch (error) {
+        });
+      } catch (error) {
         return new Response(JSON.stringify({ error: error.message }), {
           status: 502,
           headers: corsHeaders,

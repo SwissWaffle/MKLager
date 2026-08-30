@@ -28,14 +28,14 @@
                     <label for="password" name="Password">
                         Passwort
                     </label>
-                    <input class="input_field" type="text" id="password" name="password">
+                    <input class="input_field" type="password" id="password" name="password">
                 </div>
                 <div class="element_Input checkbox">
                     <input class="checkbox_inner" type="checkbox" id="remember" name="remember">
                     <label for="remember" name="remember me?"> remember me?</label>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="input_button" onclick="disHome()">Login</button>
+                    <button type="button" class="input_button" onclick="handleLogin()">Login</button>
                     <script src="scripts/transitions.js"></script>
                 </div>
                 <div>
@@ -58,7 +58,7 @@
             <div class="home_buttons">
                 <div class="user_info">
                     <p id="username">Username</p>
-                    <button type="button" class="input_button" onclick="disLogin()">Logout</button>
+                    <button type="button" class="input_button" onclick="handleLogout()">Logout</button>
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" id="currentmonth" onclick="disEintragDisplay()"></button>
