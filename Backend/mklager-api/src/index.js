@@ -54,8 +54,6 @@ export default {
           headers: corsHeaders,
           });        
         } catch (error) {
-          });        
-        } catch (error) {
         return new Response(JSON.stringify({ error: error.message }), {
           status: 502,
           headers: corsHeaders,
