@@ -128,3 +128,27 @@ function handleLogout() {
     disLogin();
 }
 
+async function signUp(path) {
+    const token = getStoredToken();
+
+    if (!token) {
+        throw new Error('Bitte melden Sie sich an, um Daten abzurufen.');
+    }
+
+    try {
+        const response = await fetch(url + path, {
+            method: 'POST',
+            headers: getAuthHeaders(),
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(payload.error || `Request failed with status ${response.status}`);
+        }
+
+        return payload;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
+    }

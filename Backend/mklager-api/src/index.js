@@ -21,6 +21,17 @@ export default {
       "Content-Type": "application/json",
     };
 
+    if (path === '/signup' && method === 'POST') {
+      await fetch(`${env.NEON_AUTH_API_URL}/sign-up/email`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: "nic.weber@outlook.com",
+          password: "test123",
+          name: "Nicolas"
+        }),
+      });
+    }
     if (method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders });
     }
