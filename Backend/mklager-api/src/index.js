@@ -14,6 +14,13 @@ const env = {
   NEON_AUTH_API_URL: "https://ep-broad-hat-a2mbfm2b.neonauth.eu-central-1.aws.neon.tech/neondb/auth"
 };
 
+import { createClient } from "@neondatabase/neon-js";
+
+const client = createClient({
+  url: env.NEON_DATA_API_URL,
+  authUrl: env.NEON_AUTH_API_URL,
+});
+
 export default {
   async fetch(request, data, _ctx) {
     const url = new URL(request.url);
@@ -39,19 +46,15 @@ export default {
       }
 
       try {
-        const neonResponse = await fetch(`${env.NEON_AUTH_API_URL}/token`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: await request.text(),
-        });
-
-        return new Response(neonResponse.body, {
+        const neonResponse = await client.auth.signIn.email({
+          email: data.email,
+          password: data.password,
+          });
+          return new Response(neonResponse.body, {
           status: neonResponse.status,
           headers: corsHeaders,
-        });
-      } catch (error) {
+          });        
+        } catch (error) {
         return new Response(JSON.stringify({ error: error.message }), {
           status: 502,
           headers: corsHeaders,
