@@ -152,3 +152,4 @@ async function signUp(path) {
         console.error('Error fetching data:', error);
         throw error;
     }
+}
