@@ -22,16 +22,41 @@ export default {
     };
 
     if (path === '/signup' && method === 'POST') {
-      await fetch(`${env.NEON_AUTH_API_URL}/sign-up/email`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: "nic.weber@outlook.com",
-          password: "test123",
-          name: "Nicolas"
-        }),
-      });
-    }
+  if (!env?.NEON_AUTH_API_URL) {
+    return new Response(JSON.stringify({ error: 'NEON_AUTH_API_URL is not configured' }), {
+      status: 500,
+      headers: corsHeaders,
+    });
+  }
+
+  try {
+    const body = await request.json();
+
+    const neonResponse = await fetch(`${env.NEON_AUTH_API_URL}/sign-up/email`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: body.email,
+        password: body.password,
+        name: body.name || body.email.split('@')[0],
+      }),
+    });
+
+    const payload = await neonResponse.json().catch(() => ({}));
+
+    return new Response(JSON.stringify(payload), {
+      status: neonResponse.status,
+      headers: corsHeaders,
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 502,
+      headers: corsHeaders,
+    });
+  }
+}
     if (method === 'OPTIONS') {
       return new Response(null, { status: 204, headers: corsHeaders });
     }

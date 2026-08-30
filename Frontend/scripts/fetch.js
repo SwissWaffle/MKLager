@@ -128,28 +128,28 @@ function handleLogout() {
     disLogin();
 }
 
-async function signUp(path) {
-    const token = getStoredToken();
+async function signUp(data) {
+  try {
+    const response = await fetch(`${url}/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    });
 
-    if (!token) {
-        throw new Error('Bitte melden Sie sich an, um Daten abzurufen.');
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(payload.error || `Sign up failed with status ${response.status}`);
     }
 
-    try {
-        const response = await fetch(url + path, {
-            method: 'POST',
-            headers: getAuthHeaders(),
-        });
-
-        const payload = await response.json().catch(() => ({}));
-
-        if (!response.ok) {
-            throw new Error(payload.error || `Request failed with status ${response.status}`);
-        }
-
-        return payload;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
+    return payload;
+  } catch (error) {
+    console.error('Error signing up:', error);
+    throw error;
+  }
 }
