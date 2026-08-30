@@ -1,26 +1,28 @@
 ﻿/**
- * Welcome to Cloudflare Workers! This is your first worker.
+ * Cloudflare Worker for the MKLager API.
  *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
+ * This worker expects Neon bindings in the runtime environment, for example via
+ * Wrangler or Cloudflare secrets:
+ *   - NEON_DATA_API_URL
+ *   - NEON_AUTH_API_URL
  *
- * Learn more at https://developers.cloudflare.com/workers/
+ * It enforces authentication on the protected /data route and proxies the login
+ * flow to the Neon Auth token endpoint.
  */
 const env = {
-  	NEON_DATA_API_URL: "https://ep-broad-hat-a2mbfm2b.apirest.eu-central-1.aws.neon.tech/neondb/rest/v1",
-  	NEON_AUTH_API_URL: "https://ep-broad-hat-a2mbfm2b.neonauth.eu-central-1.aws.neon.tech/neondb/auth",
-	};
+  NEON_DATA_API_URL: "https://ep-broad-hat-a2mbfm2b.apirest.eu-central-1.aws.neon.tech/neondb/rest/v1",
+  NEON_AUTH_API_URL: "https://ep-broad-hat-a2mbfm2b.neonauth.eu-central-1.aws.neon.tech/neondb/auth"
+};
 
 export default {
-  async fetch(request) {
+  async fetch(request, data, _ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
     const method = request.method;
     const corsHeaders = {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers": "Authorization, Content-Type",
-      "Access-Control-Allow-Methods": "GET, OPTIONS",
+      "Access-Control-Allow-Methods": "GET, OPTIONS, POST",
       "Content-Type": "application/json",
     };
 
@@ -29,6 +31,13 @@ export default {
     }
 
     if (path === '/login' && method === 'POST') {
+      if (!env?.NEON_AUTH_API_URL) {
+        return new Response(JSON.stringify({ error: 'NEON_AUTH_API_URL is not configured' }), {
+          status: 500,
+          headers: corsHeaders,
+        });
+      }
+
       try {
         const neonResponse = await fetch(`${env.NEON_AUTH_API_URL}/token`, {
           method: 'POST',
@@ -64,13 +73,19 @@ export default {
       });
     }
 
+    const authHeader = request.headers.get('Authorization');
+    if (!authHeader || !authHeader.toLowerCase().startsWith('bearer ')) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: corsHeaders,
+      });
+    }
+
     try {
       const neonResponse = await fetch(`${env.NEON_DATA_API_URL}/Lager?select=*`, {
         headers: {
           Accept: 'application/json',
-          ...(request.headers.get('Authorization')
-            ? { Authorization: request.headers.get('Authorization') }
-            : {}),
+          Authorization: authHeader,
         },
       });
 

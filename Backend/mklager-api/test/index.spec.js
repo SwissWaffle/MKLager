@@ -27,6 +27,42 @@ describe("Neon data API worker", () => {
 		);
 	});
 
+	it("proxies login requests to the Neon auth endpoint", async () => {
+		const neonFetch = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+			new Response(JSON.stringify({ access_token: "abc" }), { status: 200 }),
+		);
+		const response = await worker.fetch(
+			new Request("http://example.com/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ email: "user@example.com", password: "secret" }),
+			}),
+			{ NEON_AUTH_API_URL: "https://neon.example/auth", NEON_DATA_API_URL: "https://neon.example/rest/v1" },
+			createExecutionContext(),
+		);
+
+		expect(response.status).toBe(200);
+		expect(neonFetch).toHaveBeenCalledWith(
+			"https://neon.example/auth/token",
+			expect.objectContaining({
+				method: "POST",
+				headers: expect.objectContaining({ "Content-Type": "application/json" }),
+			}),
+		);
+	});
+
+	it("requires auth for the protected data route", async () => {
+		const neonFetch = vi.spyOn(globalThis, "fetch");
+		const response = await worker.fetch(
+			new Request("http://example.com/data"),
+			{ NEON_DATA_API_URL: "https://neon.example/rest/v1" },
+			createExecutionContext(),
+		);
+
+		expect(response.status).toBe(401);
+		expect(neonFetch).not.toHaveBeenCalled();
+	});
+
 	it("handles CORS preflight requests", async () => {
 		const response = await worker.fetch(
 			new Request("http://example.com/data", { method: "OPTIONS" }),
@@ -35,7 +71,7 @@ describe("Neon data API worker", () => {
 		);
 
 		expect(response.status).toBe(204);
-		expect(response.headers.get("Access-Control-Allow-Methods")).toBe("GET, OPTIONS");
+		expect(response.headers.get("Access-Control-Allow-Methods")).toBe("GET, OPTIONS, POST");
 	});
 
 	it("rejects unknown routes", async () => {
