@@ -2,9 +2,9 @@ const url = "postgresql://MK_User:npg_rlN1fjtm9nHS@ep-broad-hat-a2mbfm2b-pooler.
 
 
 async function handleLogin() {
-    output = getByElementId("data_output");
-    email = getByElementId("email").value;
-    password = getByElementId("password").value;
+    output = document.getElementById("data_output");
+    email = document.getElementById("email").value;
+    password = document.getElementById("password").value;
     try {
         const sql = neon(url);
         const user = await sql`
@@ -13,7 +13,7 @@ async function handleLogin() {
             WHERE email = ${email} AND password = ${password}
             LIMIT 1
         `;
-        output = `Login successful for user: ${user[0].email}`;
+        output.textContent = `Login successful for user: ${user[0].email}`;
         return;
     } catch (error) {
         console.error("Error occurred while logging in:", error);
