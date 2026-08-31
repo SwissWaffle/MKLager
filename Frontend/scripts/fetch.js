@@ -156,33 +156,7 @@ async function signUp(data) {
   */
 
 
-async function login(email, password) {
-    try {
-        const response = await fetch(`${url}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
 
-        const payload = await response.json().catch(() => ({}));
-
-        if (!response.ok) {
-            throw new Error(payload.error || `Login failed with status ${response.status}`);
-        }
-
-        const token = payload.access_token || payload.token || payload.accessToken;
-        if (token) {
-            persistToken(token);
-        }
-
-        return payload;
-    } catch (error) {
-        console.error('Error logging in:', error);
-        throw error;
-    }
-}
 
 async function directLogin(email, password) {
     return login(email, password);
@@ -214,5 +188,34 @@ async function handleLogin() {
         output.textContent = 'Login fehlgeschlagen.';
     } catch (error) {
         output.textContent = `Fehler beim Login: ${error.message}`;
+    }
+}
+
+
+async function login(email, password) {
+    try {
+        const response = await fetch(`${url}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(payload.error || `Login failed with status ${response.status}`);
+        }
+
+        const token = payload.access_token || payload.token || payload.accessToken;
+        if (token) {
+            persistToken(token);
+        }
+
+        return payload;
+    } catch (error) {
+        console.error('Error logging in:', error);
+        throw error;
     }
 }
