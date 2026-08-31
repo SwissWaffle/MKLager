@@ -37,7 +37,7 @@ async function directLogin(env, email, password) {
     const sql = neon(connectionString);
     const user = await sql`
       SELECT email
-      FROM users
+      FROM Users
       WHERE email = ${email} AND password = ${password}
       LIMIT 1
     `;
