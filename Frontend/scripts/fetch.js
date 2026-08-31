@@ -159,7 +159,7 @@ async function signUp(data) {
 
 
 async function directLogin(email, password) {
-    return login(email, password);
+    return requestLogin(email, password);
 }
 
 async function handleLogin() {
@@ -173,7 +173,7 @@ async function handleLogin() {
     }
 
     try {
-        const result = await login(email, password);
+        const result = await directLogin(email, password);
         const token = result.access_token || result.token || result.accessToken;
 
         if (token) {
@@ -192,7 +192,7 @@ async function handleLogin() {
 }
 
 
-async function login(email, password) {
+async function requestLogin(email, password) {
     try {
         const response = await fetch(`${url}/login`, {
             method: 'POST',
