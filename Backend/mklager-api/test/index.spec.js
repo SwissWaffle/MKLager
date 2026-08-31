@@ -51,6 +51,39 @@ describe("Neon data API worker", () => {
 		);
 	});
 
+	it("supports direct Neon PostgreSQL connections without Neon Auth or Data API", async () => {
+		const response = await worker.fetch(
+			new Request("http://example.com/data", {
+				headers: { Authorization: "Bearer direct-db" },
+			}),
+			{ DATABASE_URL: "postgresql://user:pass@ep-example.us-east-2.aws.neon.tech/neondb?sslmode=require" },
+			createExecutionContext(),
+		);
+
+		expect(response.status).toBe(200);
+		const payload = await response.json();
+		expect(Array.isArray(payload)).toBe(true);
+		expect(payload[0]).toEqual(expect.objectContaining({ id: 1 }));
+	});
+
+	it("allows direct-database login when Neon Auth is not configured", async () => {
+		const response = await worker.fetch(
+			new Request("http://example.com/login", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ email: "user@example.com", password: "secret" }),
+			}),
+			{ DATABASE_URL: "postgresql://user:pass@ep-example.us-east-2.aws.neon.tech/neondb?sslmode=require" },
+			createExecutionContext(),
+		);
+
+		expect(response.status).toBe(200);
+		expect(await response.json()).toEqual({
+			access_token: "direct-db-token",
+			user: "user@example.com",
+		});
+	});
+
 	it("requires auth for the protected data route", async () => {
 		const neonFetch = vi.spyOn(globalThis, "fetch");
 		const response = await worker.fetch(

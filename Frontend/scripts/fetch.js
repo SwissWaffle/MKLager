@@ -12,7 +12,7 @@ function persistToken(token) {
     localStorage.setItem('neon_access_token', token);
 }
 
-function getAuthHeaders(extraHeaders = {}) {
+/*function getAuthHeaders(extraHeaders = {}) {
     const token = getStoredToken();
 
     return {
@@ -152,4 +152,67 @@ async function signUp(data) {
     console.error('Error signing up:', error);
     throw error;
   }
+}
+  */
+
+
+async function login(email, password) {
+    try {
+        const response = await fetch(`${url}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+            throw new Error(payload.error || `Login failed with status ${response.status}`);
+        }
+
+        const token = payload.access_token || payload.token || payload.accessToken;
+        if (token) {
+            persistToken(token);
+        }
+
+        return payload;
+    } catch (error) {
+        console.error('Error logging in:', error);
+        throw error;
+    }
+}
+
+async function directLogin(email, password) {
+    return login(email, password);
+}
+
+async function handleLogin() {
+    const email = document.getElementById('email')?.value.trim();
+    const password = document.getElementById('password')?.value;
+    const output = document.getElementById('data_output');
+
+    if (!email || !password) {
+        output.textContent = 'Bitte E-Mail und Passwort eingeben.';
+        return;
+    }
+
+    try {
+        const result = await directLogin(email, password);
+        const token = result.access_token || result.token || result.accessToken;
+
+        if (token) {
+            const username = document.getElementById('username');
+            if (username) {
+                username.textContent = email;
+            }
+            disHome();
+            return;
+        }
+
+        output.textContent = 'Login fehlgeschlagen.';
+    } catch (error) {
+        output.textContent = `Fehler beim Login: ${error.message}`;
+    }
 }

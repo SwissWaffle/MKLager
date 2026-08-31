@@ -1,15 +1,24 @@
 # MKLager
 This repo contains a small inventory app with a Cloudflare Worker API and a simple frontend.
 
+## Neon connection options
+
+The app supports either:
+
+- the legacy Neon Auth + Data API flow, or
+- a direct PostgreSQL connection using `DATABASE_URL` without Neon Auth/Data API.
+
+1. Configure the Worker environment variables:
+   - `DATABASE_URL` for direct PostgreSQL access
+   - optional: `NEON_AUTH_API_URL` and `NEON_DATA_API_URL` for the legacy flow
+
+   Example values are already in `Backend/mklager-api/env.local`.
+
+2. If you want to bypass Neon Auth/Data API entirely, set `DATABASE_URL` and leave the Neon Auth/Data API variables unset.
+
 ## Neon Auth login flow
 
 The app uses Neon Auth for email/password sign-in and then sends the returned bearer token to the protected Data API route.
-
-1. Configure the Worker environment variables:
-   - `NEON_AUTH_API_URL`
-   - `NEON_DATA_API_URL`
-
-   Example values are already in `Backend/mklager-api/env.local`.
 
 2. Start the API locally:
    - `cd Backend/mklager-api`
