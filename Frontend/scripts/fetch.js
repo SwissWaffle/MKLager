@@ -199,7 +199,7 @@ async function handleLogin() {
     }
 
     try {
-        const result = await directLogin(email, password);
+        const result = await login(email, password);
         const token = result.access_token || result.token || result.accessToken;
 
         if (token) {
