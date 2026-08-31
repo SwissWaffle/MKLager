@@ -1,5 +1,5 @@
-const url = "postgresql://MK_User:npg_rlN1fjtm9nHS@ep-broad-hat-a2mbfm2b-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
- import { neon } from "@neondatabase/serverless";
+const url = "postgresql://MK_User:npg_rlN1fjtm9nHS@ep-broad-hat-a2mbfm2b-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require";
+import { neon } from "@neondatabase/serverless";
 
 async function handleLogin() {
     output = document.getElementById("data_output");
