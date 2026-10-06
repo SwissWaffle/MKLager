@@ -1,3 +1,4 @@
+const api_url = "https://mklager-api.nic-weber.workers.dev";
 
 async function handleLogin() {
     const output = document.getElementById("error_msg");
@@ -14,7 +15,7 @@ async function handleLogin() {
         return;
 */
     try {
-        const response = await fetch(`http://localhost:3000/user/login?connumber=${connumber}&password=${password}`, {
+        const response = await fetch(`${api_url}/user/login?connumber=${connumber}&password=${password}`, {
             headers: {
                 "Content-Type": "application/json"
             }

@@ -1,5 +1,5 @@
 let eintragTemplate = document.querySelector(".eintrag_single");
-
+const api_url = "https://mklager-api.nic-weber.workers.dev";
 
 async function returnHome() {
     const display = document.getElementById("eintrag_lineup");
@@ -25,7 +25,7 @@ async function dataMonth(month) {
     const verkauf_datum = u_month + "/" + u_year;
     console.log("verkauf_datum:", verkauf_datum);
      try {
-        const response = await fetch(`http://localhost:3000/data/month?username=${username}&date=${verkauf_datum}`, {
+        const response = await fetch(`${api_url}/data/month?username=${username}&date=${verkauf_datum}`, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -78,7 +78,7 @@ async function dataMonth(month) {
 }
 /*
    try {
-        const response = await fetch(`http://localhost:3000/data/month?username=${username}&date=${verkauf_datum}`, {
+        const response = await fetch(`${api_url}/data/month?username=${username}&date=${verkauf_datum}`, {
             headers: {
                 "Content-Type": "application/json"
             }
