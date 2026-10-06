@@ -6,5 +6,8 @@
   "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true
-  }
+  },
+  "vars": {
+    "DATABASE_URL": "postgresql://mk_user:$93fcg;9AXqL@ep-broad-hat-a2mbfm2b.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+  },
 }
