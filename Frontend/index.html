@@ -19,10 +19,10 @@
         <div class="login" id="login">
             <form class="login_form">
                 <div class="element_Input">
-                    <label for="email" name="Email">
-                        Email
+                    <label for="connumber" name="Connumber">
+                        Consultant Nummer
                     </label>
-                    <input class="input_field" type="text" id="email" name="email">
+                    <input class="input_field" type="text" id="connumber" name="connumber">
                 </div>
                 <div class="element_Input">
                     <label for="password" name="Password">
@@ -30,43 +30,54 @@
                     </label>
                     <input class="input_field" type="password" id="password" name="password">
                 </div>
+                <!--
                 <div class="element_Input checkbox">
                     <input class="checkbox_inner" type="checkbox" id="remember" name="remember">
                     <label for="remember" name="remember me?"> remember me?</label>
                 </div>
+                -->
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="handleLogin()">Login</button>
                     <script src="scripts/transitions.js"></script>
+                    <script src="scripts/user.js"></script>
                 </div>
                 <div>
-                    <div class="testing">
-                        <button type="button" onclick="displayData('/data',)">data</button>
-                        <button type="button" onclick="handleLogin()">Login</button>
-                        <pre id="data_output" role="status"></pre>
-                        <script src="scripts/fetch.js"></script>
+                    <pre class="error_msg" id="error_msg"></pre>
+                </div>
+
+                <!--
+                <div id ="testing" class="element_Input">
+                    <input class="date_field" type="month" id="test" name="datum">
+                    <div class="buttons">
+                        <script src="scripts/test.js"></script>
+                        <button type="button" class="input_button" onclick="tester()">Test</button>
+
                     </div>
+                    
                 </div>
-                <div>
-                    <p class="error_msg">
-                        *Email oder Passwort ist falsch*
-                    </p>
-                </div>
+                <p class="testing" id="testing_out"></p>
+                -->
+
+
             </form>
         </div>
 
         <div class="home" id="home">
             <div class="home_buttons">
                 <div class="user_info">
-                    <p id="username">Username</p>
+                    <p id="username"></p>
                     <button type="button" class="input_button" onclick="handleLogout()">Logout</button>
+                    <script src="scripts/transitions.js"></script>
+                    <script src="scripts/user.js"></script>
                 </div>
                 <div class="buttons">
-                    <button type="button" class="input_button" id="currentmonth" onclick="disEintragDisplay()"></button>
-                    <button type="button" class="input_button" id="nextmonth" onclick="disEintragDisplay()"></button>
-                    <button type="button" class="input_button" id="next2month" onclick="disEintragDisplay()"></button>
+                    <button type="button" class="input_button" id="currentmonth" onclick="dataMonth(0)"></button>
+                    <button type="button" class="input_button" id="nextmonth" onclick="dataMonth(1)"></button>
+                    <button type="button" class="input_button" id="next2month" onclick="dataMonth(2)"></button>
                     <button type="button" class="input_button" onclick="disFilter()">Spezifisch Suchen</button>
                     <button type="button" class="input_button" onclick="disEintragCreate()">Eintrag erstellen</button>
                     <script src="scripts/months.js"></script>
+                    <script src="scripts/data.js"></script>
                     <script src="scripts/transitions.js"></script>
                 </div>
             </div>
@@ -141,52 +152,29 @@
         <div class="eintrag_display" id="eintrag_display">
             <div class="title">Einträge anzeigen</div>
             <div class="buttons">
-                <button type="button" class="input_button" onclick="disHome()">Zurück</button>
+                <button type="button" class="input_button" onclick="returnHome()">Zurück</button>
                 <script src="scripts/transitions.js"></script>
+                <script src="scripts/data.js"></script>
             </div>
-            <div class="eintrag_lineup">
-                <div class="eintrag_single">
+            <template id="eintrag_single_template">
+                <div class="eintrag_single" id="eintrag_single">
+                    <div hidden id="pkey">{{pkey}}</div>
                     <div class="row">
-                        <div class="text extra">   
-                            normale/trockene Haut
-                        </div>
+                        <div class="text extra" id="text_extra">{{hauttyp}}{{farbe}}</div>
                         <div class="divide"></div>
-                        <div class="text date">
-                            08/26
-                        </div>
+                        <div class="text date" id="text_date">{{verkauf_datum}}</div>
                         <div class="divide"></div>
-                        <div class="text menge">
-                            100
-                        </div>
+                        <div class="text menge" id="text_menge">{{menge}}</div>
                     </div>
                     <div class="row">
-                        <div class="text name">
-                            Microdermabrasion Pore Minimizer
-                        </div>
+                        <div class="text name" id="text_name">{{name}}</div>
                         <button type="button" class="input_button edit" onclick="disEintragChange()">&#x270E</button>
                     </div>
+                    <p hidden id="info">{{data}}</p>
                 </div>
-                <div class="eintrag_single">
-                    <div class="row">
-                        <div class="text extra">   
-                            normale/trockene Haut
-                        </div>
-                        <div class="divide"></div>
-                        <div class="text date">
-                            12/26
-                        </div>
-                        <div class="divide"></div>
-                        <div class="text menge">
-                            100
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="text name">
-                            Microdermabrasion Pore Minimizer
-                        </div>
-                        <button type="button" class="input_button edit" onclick="disEintragChange()">&#x270E</button>
-                    </div>
-                </div>
+                </template>
+            <div class="eintrag_lineup" id="eintrag_lineup">
+                
             </div>
         </div>
 

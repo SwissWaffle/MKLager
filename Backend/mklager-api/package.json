@@ -1,21 +1,21 @@
 {
   "name": "mklager-api",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "main": "worker.mjs",
   "scripts": {
-    "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "start": "wrangler dev",
-    "test": "vitest"
+    "deploy": "wrangler deploy"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "postgres": "^3.4.9"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.21.0",
-    "vitest": "~4.1.0",
     "wrangler": "^4.124.0"
-  },
-  "dependencies": {
-    "@neondatabase/auth": "^0.5.0-beta",
-    "@neondatabase/neon-js": "^0.7.0-beta",
-    "@neondatabase/serverless": "^1.1.0"
   }
 }
