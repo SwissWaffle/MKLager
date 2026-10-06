@@ -1,4 +1,3 @@
-let eintragTemplate = document.querySelector(".eintrag_single");
 const api_url = "https://mklager-api.nic-weber.workers.dev";
 
 async function returnHome() {
