@@ -9,12 +9,7 @@
         <link rel="stylesheet" href="styles/style.css">
     </head>
     
-    <body>
-        <script src="scripts/months.js"></script>
-        <script src="scripts/transitions.js"></script>
-        <script src="scripts/data.js"></script>
-        <script src="scripts/user.js"></script>
-        
+    <body>        
     <main>
         <div class="banner">
             <p class="banner_text">
@@ -44,7 +39,8 @@
             -->
                 <div class="buttons">
                     <button type="button" class="input_button" id="login_button" onclick="handleLogin()">Login</button>
-                    <script>document.getElementById("login_button").addEventListener("click", handleLogin);</script>
+                    <script src="scripts/transitions.js"></script>
+                    <script src="scripts/user.js"></script>
                 </div>
                 <div>
                     <pre class="error_msg" id="error_msg"></pre>
