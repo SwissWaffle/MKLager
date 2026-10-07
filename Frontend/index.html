@@ -9,6 +9,11 @@
         <link rel="stylesheet" href="styles/style.css">
     </head>
     <main>
+    <body>
+        <script src="scripts/months.js"></script>
+        <script src="scripts/transitions.js"></script>
+        <script src="scripts/data.js"></script>
+        <script src="scripts/user.js"></script>
 
         <div class="banner">
             <p class="banner_text">
@@ -30,33 +35,31 @@
                     </label>
                     <input class="input_field" type="password" id="password" name="password">
                 </div>
-                <!--
-                <div class="element_Input checkbox">
-                    <input class="checkbox_inner" type="checkbox" id="remember" name="remember">
-                    <label for="remember" name="remember me?"> remember me?</label>
-                </div>
-                -->
+            <!--
+            <div class="element_Input checkbox">
+                <input class="checkbox_inner" type="checkbox" id="remember" name="remember">
+                <label for="remember" name="remember me?"> remember me?</label>
+            </div>
+            -->
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="handleLogin()">Login</button>
-                    <script src="scripts/transitions.js"></script>
-                    <script src="scripts/user.js"></script>
                 </div>
                 <div>
                     <pre class="error_msg" id="error_msg"></pre>
                 </div>
 
-                <!--
-                <div id ="testing" class="element_Input">
-                    <input class="date_field" type="month" id="test" name="datum">
-                    <div class="buttons">
-                        <script src="scripts/test.js"></script>
-                        <button type="button" class="input_button" onclick="tester()">Test</button>
+            <!--
+            <div id ="testing" class="element_Input">
+                <input class="date_field" type="month" id="test" name="datum">
+                <div class="buttons">
+                    <script src="scripts/test.js"></script>
+                    <button type="button" class="input_button" onclick="tester()">Test</button>
 
-                    </div>
-                    
                 </div>
-                <p class="testing" id="testing_out"></p>
-                -->
+                
+            </div>
+            <p class="testing" id="testing_out"></p>
+            -->
 
 
             </form>
@@ -71,6 +74,7 @@
                     <script src="scripts/user.js"></script>
                 </div>
                 <div class="buttons">
+                <!-- (index):74 Uncaught ReferenceError: dataMonth is not defined -->
                     <button type="button" class="input_button" id="currentmonth" onclick="dataMonth(0)"></button>
                     <button type="button" class="input_button" id="nextmonth" onclick="dataMonth(1)"></button>
                     <button type="button" class="input_button" id="next2month" onclick="dataMonth(2)"></button>
@@ -267,9 +271,12 @@
                 </div>
             </form>
         </div>
+
         <div class="footer_buffer"></div>
         <footer>
             <p>Copyright 2026</p>
         </footer>
+
+    </body>
     </main>
 </html>
