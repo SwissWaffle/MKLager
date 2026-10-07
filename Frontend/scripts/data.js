@@ -9,17 +9,11 @@ async function returnHome() {
 }
 
 async function dataMonth(month) {
-    const output = document.getElementById("tester_eintrag");
-    const use_month = month;
     const username = document.getElementById("username").textContent;
-    const d = new Date();
-
-    const u_month = ("0" + (d.getMonth() + 1 + use_month)).slice(-2);
-    const u_year = (d.getFullYear()).toString().slice(-2);
-    if (u_month > 12) {
-        u_month = ("0" + (d.getMonth() + 1 + use_month - 12)).slice(-2);
-        u_year = (d.getFullYear() + 1).toString().slice(-2);
-    }
+    const now = new Date();
+    const targetDate = new Date(now.getFullYear(), now.getMonth() + month, 1);
+    const u_month = String(targetDate.getMonth() + 1).padStart(2, "0");
+    const u_year = String(targetDate.getFullYear()).slice(-2);
 
     const verkauf_datum = u_month + "/" + u_year;
     console.log("verkauf_datum:", verkauf_datum);
@@ -75,6 +69,8 @@ async function dataMonth(month) {
         throw error;
     }
 }
+window.returnHome = returnHome;
+window.dataMonth = dataMonth;
 /*
    try {
         const response = await fetch(`${api_url}/data/month?username=${username}&date=${verkauf_datum}`, {
