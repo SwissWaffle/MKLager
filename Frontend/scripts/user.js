@@ -5,7 +5,7 @@ async function handleLogin() {
     const connumber = document.getElementById("connumber").value.toLowerCase();
     const password = document.getElementById("password").value;
     try {
-        const response = await fetch(`${api_url}/user/login?connumber=${connumber}&password=${password}`, {
+        const response = await fetch(`${api_url}/user/login?username=${connumber}&password=${password}`, {
             headers: {
                 "Content-Type": "application/json"
             }
