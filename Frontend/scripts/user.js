@@ -47,4 +47,4 @@ async function handleLogout() {
     }
 }
 
-//https://mklager-api.nic-weber.workers.dev/user/login?connumber="tester"&password="test"
+//https://mklager-api.nic-weber.workers.dev/user/login?connumber=tester&password=test

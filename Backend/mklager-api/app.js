@@ -10,7 +10,6 @@ app.use(cors());
 
 app.get("/data", async (req, res) => {
   const result = await sql.query(`SELECT * FROM "Hauttyp" ORDER BY "PKey_Hauttyp" ASC`);
-  //const specific = JSON.parse(result);
   const data = result.map(row => ({
     PKey_Hauttyp: row.PKey_Hauttyp,
     Hauttyp: row.Hauttyp,
@@ -19,7 +18,6 @@ app.get("/data", async (req, res) => {
 });
 
 app.get("/data/month", async (req, res) => {
-/* FIGURE OUT FORMATING FOR RESPONSE AND HOW THE QUERY RESULT IS FORMATED */
   const { username, date } = req.query;
   console.log("username:", username);
   console.log("date:", date);
@@ -41,6 +39,23 @@ app.get("/data/month", async (req, res) => {
   res.send(data);
 });
 
+app.get("/data/specific", async (req, res) => {
+  const { username, name, artikelnr, pflegeserie, kategorie, farbe, hauttyp, date } = req.query;
+  console.log("username:", username);
+  console.log("name:", name);
+  console.log("artikelnr:", artikelnr);
+  console.log("pflegeserie:", pflegeserie);
+  console.log("kategorie:", kategorie);
+  console.log("farbe:", farbe);
+  console.log("hauttyp:", hauttyp);
+  console.log("date:", date);
+  try {//FIGURE OUT HOW TO GET SPECIFIC DATA FROM DATABASE
+    var result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1 AND "verkauf_datum" = $2`, [username, date]);
+  } catch (error) {
+    console.error("Error occurred while getting specific data:", error);
+    res.status(500).json({error: "Internal server error"});
+  }
+});
 
 app.get("/test", (req, res) => {
   const result = req.query.test;
@@ -48,9 +63,9 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/user/login", async (req, res) => {
-  const { connumber, password: entry_password} = req.query;
+  const { username, password: entry_password} = req.query;
   try {
-    const result = await sql.query(`SELECT "password" FROM "User" WHERE "consultant_id" = $1`, [connumber]);
+    const result = await sql.query(`SELECT "password" FROM "User" WHERE "consultant_id" = $1`, [username]);
   
     const user = result.rows ? result.rows[0] : result[0];
     if (!user) {
@@ -68,5 +83,4 @@ app.get("/user/login", async (req, res) => {
       res.status(500).json({error: "Internal server error"});
     }
 });
-//redeploy
 module.exports = app;
