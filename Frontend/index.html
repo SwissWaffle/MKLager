@@ -9,7 +9,34 @@
         <link rel="stylesheet" href="styles/style.css">
     </head>
     
-    <body>        
+    <body onload="loadScripts()">
+
+
+        <script>
+            async function loadScripts() {
+                const scripts = [
+                    "scripts/transitions.js",
+                    "scripts/user.js",
+                    "scripts/data.js",
+                    "scripts/months.js"
+                ];
+
+                try {
+                    for (const src of scripts) {
+                        await new Promise((resolve, reject) => {
+                            const script = document.createElement("script");
+                            script.src = src;
+                            script.onload = resolve;
+                            script.onerror = () => reject(new Error(`Failed to load script: ${src}`));
+                            document.body.appendChild(script);
+                        });
+                    }
+                } catch (error) {
+                    console.error("Failed to initialize page scripts:", error);
+                    throw error;
+                }
+            }
+        </script>
     <main>
         <div class="banner">
             <p class="banner_text">
@@ -39,8 +66,6 @@
             -->
                 <div class="buttons">
                     <button type="button" class="input_button" id="login_button" onclick="handleLogin()">Login</button>
-                    <script src="scripts/transitions.js"></script>
-                    <script src="scripts/user.js"></script>
                 </div>
                 <div>
                     <pre class="error_msg" id="error_msg"></pre>
@@ -50,7 +75,6 @@
             <div id ="testing" class="element_Input">
                 <input class="date_field" type="month" id="test" name="datum">
                 <div class="buttons">
-                    <script src="scripts/test.js"></script>
                     <button type="button" class="input_button" onclick="tester()">Test</button>
 
                 </div>
@@ -68,8 +92,6 @@
                 <div class="user_info">
                     <p id="username"></p>
                     <button type="button" class="input_button" onclick="handleLogout()">Logout</button>
-                    <script src="scripts/transitions.js"></script>
-                    <script src="scripts/user.js"></script>
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" id="currentmonth" onclick="dataMonth(0)"></button>
@@ -77,7 +99,6 @@
                     <button type="button" class="input_button" id="next2month" onclick="dataMonth(2)"></button>
                     <button type="button" class="input_button" onclick="disFilter()">Spezifisch Suchen</button>
                     <button type="button" class="input_button" onclick="disEintragCreate()">Eintrag erstellen</button>
-                    <script src="scripts/transitions.js"></script>
                 </div>
             </div>
         </div>
@@ -143,7 +164,6 @@
                     <button type="button" class="input_button" onclick="disEintragDisplay()">Suchen</button>
                     <button type="button" class="input_button">Löschen</button>
                     <button type="button" class="input_button" onclick="disHome()">Zurück</button>
-                    <script src="scripts/transitions.js"></script>
                 </div>
             </form>
         </div>
@@ -152,7 +172,6 @@
             <div class="title">Einträge anzeigen</div>
             <div class="buttons">
                 <button type="button" class="input_button" onclick="returnHome()">Zurück</button>
-                <script src="scripts/transitions.js"></script>
             </div>
             <template id="eintrag_single_template">
                 <div class="eintrag_single" id="eintrag_single">
@@ -202,7 +221,6 @@
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="disHome()">Erstellen</button>
                     <button type="button" class="input_button" onclick="disHome()">Abbrechen</button>
-                    <script src="scripts/transitions.js"></script>
                 </div>
             </form>
         </div>
@@ -261,7 +279,6 @@
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="disEintragDisplay()">Speichern</button>
                     <button type="button" class="input_button" onclick="disEintragDisplay()">Abbrechen</button>
-                    <script src="scripts/transitions.js"></script>
                 </div>
             </form>
         </div>

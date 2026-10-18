@@ -1,4 +1,4 @@
-const api_url = "https://mklager-api.nic-weber.workers.dev";
+var api_url = "https://mklager-api.nic-weber.workers.dev";
 
 async function returnHome() {
     const display = document.getElementById("eintrag_lineup");
@@ -69,8 +69,7 @@ async function dataMonth(month) {
         throw error;
     }
 }
-window.returnHome = returnHome;
-window.dataMonth = dataMonth;
+
 /*
    try {
         const response = await fetch(`${api_url}/data/month?username=${username}&date=${verkauf_datum}`, {

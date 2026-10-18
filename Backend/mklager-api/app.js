@@ -23,8 +23,8 @@ app.get("/data/month", async (req, res) => {
   const { username, date } = req.query;
   console.log("username:", username);
   console.log("date:", date);
-  const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "verkauf_datum" = $1 AND "consultant" = $2`, [date, username]);
-  
+  const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "verkauf_datum" = $1 AND "consultant_id" = $2`, [date, username]);
+  console.log("result:", result);
   const data = result.map(row => ({
     PKey_Lager: row.PKey_Lager,
     consultant: row.consultant,
@@ -50,7 +50,7 @@ app.get("/test", (req, res) => {
 app.get("/user/login", async (req, res) => {
   const { connumber, password: entry_password} = req.query;
   try {
-    const result = await sql.query(`SELECT "password" FROM "User" WHERE "consultant" = $1`, [connumber]);
+    const result = await sql.query(`SELECT "password" FROM "User" WHERE "consultant_id" = $1`, [connumber]);
   
     const user = result.rows ? result.rows[0] : result[0];
     if (!user) {

@@ -1,19 +1,9 @@
-const api_url = "https://mklager-api.nic-weber.workers.dev";
+var api_url = "https://mklager-api.nic-weber.workers.dev";
 
 async function handleLogin() {
     const output = document.getElementById("error_msg");
     const connumber = document.getElementById("connumber").value.toLowerCase();
     const password = document.getElementById("password").value;
-/*    try {
-        const response = await fetch("http://localhost:3000/test?test=test", {
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-            }
-        })
-        const data = await response.json();
-        output.textContent = `Login successful for user: ${data.test}`;
-        return;
-*/
     try {
         const response = await fetch(`${api_url}/user/login?connumber=${connumber}&password=${password}`, {
             headers: {
@@ -57,4 +47,4 @@ async function handleLogout() {
     }
 }
 
-//http://localhost:3000/login?connumber="12345"&password="test"
+//https://mklager-api.nic-weber.workers.dev/user/login?connumber="tester"&password="test"
