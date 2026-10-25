@@ -1,5 +1,6 @@
 var api_url = "https://mklager-api.nic-weber.workers.dev";
 
+
 async function returnHome() {
     const display = document.getElementById("eintrag_lineup");
     while (display.firstChild) {

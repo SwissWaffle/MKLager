@@ -21,6 +21,7 @@ app.get("/data/month", async (req, res) => {
   const { username, date } = req.query;
   console.log("username:", username);
   console.log("date:", date);
+  try {
   const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "verkauf_datum" = $1 AND "consultant_id" = $2`, [date, username]);
   console.log("result:", result);
   const data = result.map(row => ({
@@ -37,6 +38,10 @@ app.get("/data/month", async (req, res) => {
   }));
   console.log("data:", data);
   res.send(data);
+  } catch (error) {
+    console.error("Error occurred while getting data for month:", error);
+    res.status(500).json({error: "Internal server error"});
+  }
 });
 
 app.get("/data/specific", async (req, res) => {
@@ -50,7 +55,22 @@ app.get("/data/specific", async (req, res) => {
   console.log("hauttyp:", hauttyp);
   console.log("date:", date);
   try {//FIGURE OUT HOW TO GET SPECIFIC DATA FROM DATABASE
-    var result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1 AND "verkauf_datum" = $2`, [username, date]);
+    const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1 AND "name" = $2 AND "art_nr" = $3 AND "verkauf_datum" = $4  AND "pflege_serie" = $5 AND "kategorie" = $6 AND "hauttyp" = $7 AND "farbe" = $8 `, [username, name, artikelnr, date, pflegeserie, kategorie, hauttyp, farbe]);
+    console.log("result:", result);
+    const data = result.map(row => ({
+    PKey_Lager: row.PKey_Lager,
+    consultant: row.consultant,
+    name: row.name,
+    artikelnummer: row.art_nr,
+    pflegeserie: row.pflege_serie,
+    kategorie: row.kategorie,
+    hauttyp: row.hauttyp,
+    farbe: row.farbe,
+    verkauf_datum: row.verkauf_datum,
+    menge: row.menge,
+  }));
+  console.log("data:", data);
+  res.send(data);
   } catch (error) {
     console.error("Error occurred while getting specific data:", error);
     res.status(500).json({error: "Internal server error"});
