@@ -21,12 +21,15 @@ async function dataSpecific() {
     var month = date.slice(5, 7);
     var verkauf_datum = month + "/" + year.slice(-2);
     console.log("verkauf_datum:", verkauf_datum);
+    console.log("farbe:", farbe);
     try {
-        const response = await fetch(`${api_url}/data/specific?username=${username}&name=${name}&artikelnr=${artikelnr}&pflegeserie=${pflegeserie}&kategorie=${kategorie}&farbe=${farbe}&hauttyp=${hauttyp}&date=${verkauf_datum}`, {
+        const response = await fetch(`${api_url}/data/specific?username=${username}${name ? `&name=${name}` : `&name=null`}${artikelnr ? `&artikelnr=${artikelnr}` : `&artikelnr=null`}${pflegeserie ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=null`}${kategorie ? `&kategorie=${kategorie}` : `&kategorie=null`}${farbe ? `&farbe=${farbe}` : `&farbe=null`}${hauttyp ? `&hauttyp=${hauttyp}` : `&hauttyp=null`}${date ? `&date=${verkauf_datum}` : `&date=null`}`, {
             headers: {
                 "Content-Type": "application/json"
             }
+        
         })
+        console.log("fetch", `${api_url}/data/specific?username=${username}${name ? `&name=${name}` : ''}${artikelnr ? `&artikelnr=${artikelnr}` : ''}${pflegeserie ? `&pflegeserie=${pflegeserie}` : ''}${kategorie ? `&kategorie=${kategorie}` : ''}${farbe ? `&farbe=${farbe}` : ''}${hauttyp ? `&hauttyp=${hauttyp}` : ''}${date ? `&date=${verkauf_datum}` : ''}`);
         const data = await response.json();
         dataDisplay(data);
         disEintragDisplay();
