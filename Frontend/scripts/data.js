@@ -36,7 +36,7 @@ async function dataSpecific() {
         throw error;
     }
 }
-
+//https://mklager-api.nic-weber.workers.dev/data/specific?username=tester&name=&artikelnr=&pflegeserie=Repair&kategorie=&farbe=&hauttyp=&date=
 
 
 async function dataMonth(month) {
