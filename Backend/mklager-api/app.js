@@ -44,6 +44,8 @@ app.get("/data/month", async (req, res) => {
   }
 });
 
+
+// NOT DONE!!!!!!!!!!!!!!!!!!!!!!!!!!
 app.get("/data/specific", async (req, res) => {
   const { username, name, artikelnr, pflegeserie, kategorie, farbe, hauttyp, date } = req.query;
   console.log("username:", username);
@@ -55,7 +57,7 @@ app.get("/data/specific", async (req, res) => {
   console.log("hauttyp:", hauttyp);
   console.log("date:", date);
   try {//FIGURE OUT HOW TO GET SPECIFIC DATA FROM DATABASE
-    const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1 ${name !== null ? 'AND "name" = $2' : ''} ${artikelnr !== null ? 'AND "art_nr" = $3' : ''} ${date !== null ? 'AND "verkauf_datum" = $4' : ''} ${pflegeserie !== null ? 'AND "pflege_serie" = $5' : ''} ${kategorie !== null ? 'AND "kategorie" = $6' : ''} ${hauttyp !== null ? 'AND "hauttyp" = $7' : ''} ${farbe !== null ? 'AND "farbe" = $8' : ''}`, [username, name, artikelnr, date, pflegeserie, kategorie, hauttyp, farbe]);
+    const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1 ${name !== "null" ? 'AND "name" = $2' : ''} ${artikelnr !== null ? 'AND "art_nr" = $3' : ''} ${date !== null ? 'AND "verkauf_datum" = $4' : ''} ${pflegeserie !== null ? 'AND "pflege_serie" = $5' : ''} ${kategorie !== null ? 'AND "kategorie" = $6' : ''} ${hauttyp !== null ? 'AND "hauttyp" = $7' : ''} ${farbe !== null ? 'AND "farbe" = $8' : ''}`, [username, name, artikelnr, date, pflegeserie, kategorie, hauttyp, farbe]);
     console.log("result:", result);
     const data = result.map(row => ({
     PKey_Lager: row.PKey_Lager,
@@ -77,9 +79,21 @@ app.get("/data/specific", async (req, res) => {
   }
 });
 
-app.get("/test", (req, res) => {
-  const result = req.query.test;
-  res.json({test: result});
+app.get("/data/create", async (req, res) => {
+  const { username, artikelnr, date, menge } = req.query;
+  console.log("username:", username);
+  console.log("artikelnr:", artikelnr);
+  console.log("date:", date);
+  console.log("menge:", menge);
+  try {
+    const result = await sql.query(`INSERT INTO "Lager" ("FKey_User", "FKey_Produkte", "verkauf_datum", "menge") VALUES ((SELECT "PKey_User" FROM "User" WHERE "consultant_id" = $1), (SELECT "PKey_Produkte" FROM "Produkte" WHERE "art_nr" = $2), $3, $4)`, [username, artikelnr, date, menge]);
+    res.json({success: true});
+  } catch (error) {
+    console.error("Error occurred while creating data:", error);
+    res.status(500).json({error: "Internal server error"});
+  }
+
+
 });
 
 app.get("/user/login", async (req, res) => {

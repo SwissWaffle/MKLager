@@ -8,39 +8,6 @@ async function returnHome() {
     }
     disHome();
 }
-async function dataSpecific() {
-    var username = document.getElementById("username").textContent;
-    var name = document.getElementById("name").value;
-    var artikelnr = document.getElementById("artikelnr").value;
-    var pflegeserie = document.getElementById("pflege_serie").value;
-    var kategorie = document.getElementById("kategorie").value;
-    var farbe = document.getElementById("farbe").value;
-    var hauttyp = document.getElementById("hauttyp").value;
-    var date = document.getElementById("datum").value;
-    var year = date.slice(0, 4);
-    var month = date.slice(5, 7);
-    var verkauf_datum = month + "/" + year.slice(-2);
-    console.log("verkauf_datum:", verkauf_datum);
-    console.log("farbe:", farbe);
-    try {
-        const response = await fetch(`${api_url}/data/specific?username=${username}${name ? `&name=${name}` : `&name=null`}${artikelnr ? `&artikelnr=${artikelnr}` : `&artikelnr=null`}${pflegeserie ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=null`}${kategorie ? `&kategorie=${kategorie}` : `&kategorie=null`}${farbe ? `&farbe=${farbe}` : `&farbe=null`}${hauttyp ? `&hauttyp=${hauttyp}` : `&hauttyp=null`}${date ? `&date=${verkauf_datum}` : `&date=null`}`, {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        
-        })
-        console.log("fetch", `${api_url}/data/specific?username=${username}${name ? `&name=${name}` : ''}${artikelnr ? `&artikelnr=${artikelnr}` : ''}${pflegeserie ? `&pflegeserie=${pflegeserie}` : ''}${kategorie ? `&kategorie=${kategorie}` : ''}${farbe ? `&farbe=${farbe}` : ''}${hauttyp ? `&hauttyp=${hauttyp}` : ''}${date ? `&date=${verkauf_datum}` : ''}`);
-        const data = await response.json();
-        dataDisplay(data);
-        disEintragDisplay();
-        return;
-    } catch (error) {
-        console.error("Error occurred while getting data:", error);
-        throw error;
-    }
-}
-//https://mklager-api.nic-weber.workers.dev/data/specific?username=tester&name=&artikelnr=&pflegeserie=Repair&kategorie=&farbe=&hauttyp=&date=
-
 
 async function dataMonth(month) {
     var username = document.getElementById("username").textContent;
@@ -60,27 +27,6 @@ async function dataMonth(month) {
         })
         const data = await response.json();
         dataDisplay(data);
-        /*length = data.length;
-        console.log("length:", length);
-        const template = document.getElementById("eintrag_single_template");
-        for (let i = 0; i < length; i++){
-            console.log("data[i]:", data[i]);
-            const clone = template.content.cloneNode(true);
-            clone.querySelector("#pkey").textContent = data[i].PKey_Lager;
-            if (data[i].hauttyp === null) {
-                data[i].hauttyp = "";
-            }
-            if (data[i].farbe === null) {
-                data[i].farbe = "";
-            }
-            clone.querySelector("#text_extra").textContent = data[i].hauttyp + " " + data[i].farbe;
-            clone.querySelector("#text_date").textContent = data[i].verkauf_datum;
-            clone.querySelector("#text_menge").textContent = data[i].menge;
-            clone.querySelector("#text_name").textContent = data[i].name;
-            clone.querySelector("#info").textContent = JSON.stringify(data[i]);
-            clone.querySelector("#eintrag_single").setAttribute("PKey_Lager", data[i].PKey_Lager);
-            document.getElementById("eintrag_lineup").appendChild(clone);
-            }*/
         disEintragDisplay();
         return;
     } catch (error) {
@@ -88,6 +34,70 @@ async function dataMonth(month) {
         throw error;
     }
 }
+
+//NOT DONE!!!!!!!!!!!!!!!!!!!!!!!!!!
+async function dataSpecific() {
+    var username = document.getElementById("username").textContent;
+    var name = document.getElementById("name").value;
+    var artikelnr = document.getElementById("artikelnr").value;
+    var pflegeserie = document.getElementById("pflege_serie").value;
+    var kategorie = document.getElementById("kategorie").value;
+    var farbe = document.getElementById("farbe").value;
+    var hauttyp = document.getElementById("hauttyp").value;
+    var date = document.getElementById("datum").value;
+    var year = date.slice(0, 4);
+    var month = date.slice(5, 7);
+    var verkauf_datum = month + "/" + year.slice(-2);
+    console.log("verkauf_datum:", verkauf_datum);
+    //console.log("farbe:", farbe);
+    try {
+        const response = await fetch(`${api_url}/data/specific?username=${username}${name !== "" && name !== undefined ? `&name=${name}` : `&name=null`}${artikelnr !== "" && artikelnr !== undefined ? `&artikelnr=${artikelnr}` : `&artikelnr=null`}${pflegeserie !== "" && pflegeserie !== undefined ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=null`}${kategorie !== "" && kategorie !== undefined ? `&kategorie=${kategorie}` : `&kategorie=null`}${farbe === "" ? `&farbe=null` : `&farbe=${farbe}`}${hauttyp !== "" && hauttyp !== undefined ? `&hauttyp=${hauttyp}` : `&hauttyp=null`}${date ? `&date=${verkauf_datum}` : `&date=null`}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        
+        })
+        console.log("fetch", `${api_url}/data/specific?username=${username}${name !== null && name !== undefined ? `&name=${name}` : `&name=null`}${artikelnr !== null && artikelnr !== undefined ? `&artikelnr=${artikelnr}` : `&artikelnr=null`}${pflegeserie !== null && pflegeserie !== undefined ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=null`}${kategorie !== null && kategorie !== undefined ? `&kategorie=${kategorie}` : `&kategorie=null`}${farbe !== null && farbe !== undefined ? `&farbe=${farbe}` : `&farbe=null`}${hauttyp !== null && hauttyp !== undefined ? `&hauttyp=${hauttyp}` : `&hauttyp=null`}${date ? `&date=${verkauf_datum}` : `&date=null`}`);
+        const data = await response.json();
+        dataDisplay(data);
+        disEintragDisplay();
+        return;
+    } catch (error) {
+        console.error("Error occurred while getting data:", error);
+        throw error;
+    }
+}
+//https://mklager-api.nic-weber.workers.dev/data/specific?username=tester&name=&artikelnr=&pflegeserie=Repair&kategorie=&farbe=&hauttyp=&date=
+
+async function dataCreate() {
+    var username = document.getElementById("username").textContent;
+    var artikelnr = document.getElementById("artikelnr").value;
+    var date = document.getElementById("datum").value;
+    var year = date.slice(0, 4);
+    var month = date.slice(5, 7);
+    var verkauf_datum = month + "/" + year.slice(-2);
+    var menge = document.getElementById("menge").value;
+    try {
+        const response = await fetch(`${api_url}/data/create?username=${username}&artikelnr=${artikelnr}&date=${verkauf_datum}&menge=${menge}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+
+        })
+        const data = await response.json();
+        if (data.success) {
+            console.log("Data created successfully");
+            disHome();
+        }else {
+            console.error("Failed to create data:", data.error);
+        }
+        return;
+    }catch (error) {
+        console.error("Error occurred while creating data:", error);
+        throw error;
+    }
+}
+
 
 async function dataDisplay(data) {
     var length = data.length;
