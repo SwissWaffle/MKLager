@@ -110,19 +110,19 @@
                     <label for="name" name="Name">
                         Name
                     </label>
-                    <input class="input_field" type="text" id="name" name="name">
+                    <input class="input_field" type="text" id="filter_name" name="name">
                 </div>
                 <div class="element_Input">
                     <label for="artikelnr" name="Artikel Nr.">
                         Artikel Nr.
                     </label>
-                    <input class="input_field" type="text" id="artikelnr" name="artikel nr.">
+                    <input class="input_field" type="text" id="filter_artikelnr" name="artikel nr.">
                 </div>
                 <div class="element_Input">
                     <label for="pflege_serie" name="Pflege Serie">
                         Pflege Serie
                     </label>
-                    <select class="select_field" id="pflege_serie" name="pflege serie">
+                    <select class="select_field" id="filter_pflege_serie" name="pflege serie">
                         <option value=""></option>
                         <option value="Repair">Repair</option>
                         <option value="MK Men">MK Men</option>
@@ -132,7 +132,7 @@
                     <label for="kategorie" name="Kategorie">
                         Kategorie
                     </label>
-                    <select class="select_field" id="kategorie" name="kategorie">
+                    <select class="select_field" id="filter_kategorie" name="kategorie">
                         <option value=""></option>
                         <option value="hautpflege">Hautpflege</option>
                         <option value="koerperpflege">K&#246;rperpflege</option>
@@ -142,13 +142,13 @@
                     <label for="farbe" name="Farbe">
                         Farbe
                     </label>
-                    <input class="input_field" type="text" id="farbe" name="farbe">
+                    <input class="input_field" type="text" id="filter_farbe" name="farbe">
                 </div>
                 <div class="element_Input">
                     <label for="hauttyp" name="Hauttyp">
                         Hauttyp
                     </label>
-                    <select class="select_field" id="hauttyp" name="hauttyp">
+                    <select class="select_field" id="filter_hauttyp" name="hauttyp">
                         <option value=""></option>
                         <option value="hautpflege">Hautpflege</option>
                         <option value="koerperpflege">K&#246;rperpflege</option>
@@ -158,7 +158,7 @@
                     <label for="datum" name="Datum">
                         Datum
                     </label>
-                    <input class="date_field" type="month" id="datum" name="datum">
+                    <input class="date_field" type="month" id="filter_datum" name="datum">
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="dataSpecific()">Suchen</button>
@@ -204,19 +204,19 @@
                     <label for="artikelnr" name="Artikel Nr.">
                         Artikel Nr.
                     </label>
-                    <input class="input_field" type="text" id="artikelnr" name="artikel nr." maxlength="8">
+                    <input class="input_field" type="text" id="create_artikelnr" name="artikel nr." maxlength="8">
                 </div>
                 <div class="element_Input">
                     <label for="datum" name="Datum">
                         Datum
                     </label>
-                    <input class="date_field" type="month" id="datum" name="datum">
+                    <input class="date_field" type="month" id="create_datum" name="datum">
                 </div>
                 <div class="element_Input">
                     <label for="menge" name="Menge">
                         Menge
                     </label>
-                    <input class="input_field" type="number" id="menge" name="menge">
+                    <input class="input_field" type="number" id="create_menge" name="menge">
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="dataCreate()">Erstellen</button>
@@ -232,49 +232,49 @@
                     <label for="name" name="Name">
                         Name
                     </label>
-                    <input class="input_field" type="text" id="name" name="name" readonly>
+                    <input class="input_field" type="text" id="change_name" name="name" readonly>
                 </div>
                 <div class="element_Input">
                     <label for="artikelnr" name="Artikel Nr.">
                         Artikel Nr.
                     </label>
-                    <input class="input_field" type="text" id="artikelnr" name="artikel nr." readonly value="test">
+                    <input class="input_field" type="text" id="change_artikelnr" name="artikel nr." readonly value="test">
                 </div>
                 <div class="element_Input">
                     <label for="pflege_serie" name="Pflege Serie">
                         Pflege Serie
                     </label>
-                    <input class="input_field" type="text" id="pflege_serie" name="pflege_serie" readonly>
+                    <input class="input_field" type="text" id="change_pflege_serie" name="pflege_serie" readonly>
                 </div>
                 <div class="element_Input">
                     <label for="kategorie" name="Kategorie">
                         Kategorie
                     </label>
-                    <input class="input_field" type="text" id="kategorie" name="kategorie" readonly>
+                    <input class="input_field" type="text" id="change_kategorie" name="kategorie" readonly>
                 </div>
                 <div class="element_Input">
                     <label for="farbe" name="Farbe">
                         Farbe
                     </label>
-                    <input class="input_field" type="text" id="farbe" name="farbe" readonly>
+                    <input class="input_field" type="text" id="change_farbe" name="farbe" readonly>
                 </div>
                 <div class="element_Input">
                     <label for="hauttyp" name="Hauttyp">
                         Hauttyp
                     </label>
-                    <input class="input_field" type="text" id="hauttyp" name="hauttyp" readonly>
+                    <input class="input_field" type="text" id="change_hauttyp" name="hauttyp" readonly>
                 </div>
                 <div class="element_Input">
                     <label for="datum" name="Datum">
                         Datum
                     </label>
-                    <input class="date_field" type="month" id="datum" name="datum">
+                    <input class="date_field" type="month" id="change_datum" name="datum">
                 </div>
                 <div class="element_Input">
                     <label for="menge" name="Menge">
                         Menge
                     </label>
-                    <input class="input_field" type="number" id="menge" name="menge">
+                    <input class="input_field" type="number" id="change_menge" name="menge">
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="disEintragDisplay()">Speichern</button>

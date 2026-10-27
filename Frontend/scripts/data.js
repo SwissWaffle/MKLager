@@ -38,13 +38,13 @@ async function dataMonth(month) {
 //NOT DONE!!!!!!!!!!!!!!!!!!!!!!!!!!
 async function dataSpecific() {
     var username = document.getElementById("username").textContent;
-    var name = document.getElementById("name").value;
-    var artikelnr = document.getElementById("artikelnr").value;
-    var pflegeserie = document.getElementById("pflege_serie").value;
-    var kategorie = document.getElementById("kategorie").value;
-    var farbe = document.getElementById("farbe").value;
-    var hauttyp = document.getElementById("hauttyp").value;
-    var date = document.getElementById("datum").value;
+    var name = document.getElementById("filter_name").value;
+    var artikelnr = document.getElementById("filter_artikelnr").value;
+    var pflegeserie = document.getElementById("filter_pflege_serie").value;
+    var kategorie = document.getElementById("filter_kategorie").value;
+    var farbe = document.getElementById("filter_farbe").value;
+    var hauttyp = document.getElementById("filter_hauttyp").value;
+    var date = document.getElementById("filter_datum").value;
     var year = date.slice(0, 4);
     var month = date.slice(5, 7);
     var verkauf_datum = month + "/" + year.slice(-2);
@@ -71,12 +71,16 @@ async function dataSpecific() {
 
 async function dataCreate() {
     var username = document.getElementById("username").textContent;
-    var artikelnr = document.getElementById("artikelnr").value;
-    var date = document.getElementById("datum").value;
+    var artikelnr = document.getElementById("create_artikelnr").value;
+    var date = document.getElementById("create_datum").value;
     var year = date.slice(0, 4);
     var month = date.slice(5, 7);
     var verkauf_datum = month + "/" + year.slice(-2);
-    var menge = document.getElementById("menge").value;
+    var menge = document.getElementById("create_menge").value;
+    console.log("verkauf_datum:", verkauf_datum);
+    console.log("menge:", menge);
+    console.log("artikelnr:", artikelnr);
+    console.log("username:", username);
     try {
         const response = await fetch(`${api_url}/data/create?username=${username}&artikelnr=${artikelnr}&date=${verkauf_datum}&menge=${menge}`, {
             headers: {
