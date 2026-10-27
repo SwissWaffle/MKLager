@@ -77,6 +77,9 @@ async function dataCreate() {
     var month = date.slice(5, 7);
     var verkauf_datum = month + "/" + year.slice(-2);
     var menge = document.getElementById("create_menge").value;
+    var output = document.getElementById("create_error_msg");
+    output.textContent = "";
+    console.log("username:", username);
     console.log("verkauf_datum:", verkauf_datum);
     console.log("menge:", menge);
     console.log("artikelnr:", artikelnr);
@@ -94,6 +97,7 @@ async function dataCreate() {
             disHome();
         }else {
             console.error("Failed to create data:", data.error);
+            output.textContent = data.error;
         }
         return;
     }catch (error) {

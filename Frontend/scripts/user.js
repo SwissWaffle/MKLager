@@ -1,7 +1,7 @@
 var api_url = "https://mklager-api.nic-weber.workers.dev";
 
 async function handleLogin() {
-    const output = document.getElementById("error_msg");
+    const output = document.getElementById("login_error_msg");
     const connumber = document.getElementById("connumber").value.toLowerCase();
     const password = document.getElementById("password").value;
     try {
@@ -31,7 +31,7 @@ async function handleLogin() {
 
 async function handleLogout() {
     try {
-    const output = document.getElementById("error_msg");
+    const output = document.getElementById("login_error_msg");
     const connumber = document.getElementById("connumber");
     const password = document.getElementById("password");
     const username = document.getElementById("username");
