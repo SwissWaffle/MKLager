@@ -97,7 +97,7 @@ async function dataCreate() {
             disHome();
         }else {
             console.error("Failed to create data:", data.error);
-            output.textContent = data.error;
+            output.textContent = "*Eingetragene Daten sind ungültig*";
         }
         return;
     }catch (error) {
