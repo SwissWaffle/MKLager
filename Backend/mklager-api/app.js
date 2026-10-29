@@ -57,7 +57,7 @@ app.get("/data/specific", async (req, res) => {
   console.log("hauttyp:", hauttyp);
   console.log("date:", date);
   try {//FIGURE OUT HOW TO GET SPECIFIC DATA FROM DATABASE
-    const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1 ${name !== "none" ? 'AND "name" = $2' : ''} ${artikelnr !== "none" ? 'AND "art_nr" = $3' : ''} ${date !== "none" ? 'AND "verkauf_datum" = $4' : ''} ${pflegeserie !== "none" ? 'AND "pflege_serie" = $5' : ''} ${kategorie !== "none" ? 'AND "kategorie" = $6' : ''} ${hauttyp !== "none" ? 'AND "hauttyp" = $7' : ''} ${farbe !== "none" ? 'AND "farbe" = $8' : ''}`, [username, name, artikelnr, date, pflegeserie, kategorie, hauttyp, farbe]);
+    const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1` /*${name !== "none" ? 'AND "name" = $2' : ''} ${artikelnr !== "none" ? 'AND "art_nr" = $3' : ''} ${date !== "none" ? 'AND "verkauf_datum" = $4' : ''} ${pflegeserie !== "none" ? 'AND "pflege_serie" = $5' : ''} ${kategorie !== "none" ? 'AND "kategorie" = $6' : ''} ${hauttyp !== "none" ? 'AND "hauttyp" = $7' : ''} ${farbe !== "none" ? 'AND "farbe" = $8' : ''}*/, [username/*, name, artikelnr, date, pflegeserie, kategorie, hauttyp, farbe*/]);
     console.log("result:", result);
     const data = result.map(row => ({
     PKey_Lager: row.PKey_Lager,
