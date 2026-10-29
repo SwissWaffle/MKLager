@@ -48,7 +48,7 @@ app.get("/data/month", async (req, res) => {
 // NOT DONE!!!!!!!!!!!!!!!!!!!!!!!!!!
 app.get("/data/specific", async (req, res) => {
   const { username, name, artikelnr, pflegeserie, kategorie, farbe, hauttyp, date } = req.query;
-  console.write("username:", username);
+  console.log("username:", username);
   console.log("name:", name);
   console.log("artikelnr:", artikelnr);
   console.log("pflegeserie:", pflegeserie);
@@ -56,7 +56,7 @@ app.get("/data/specific", async (req, res) => {
   console.log("farbe:", farbe);
   console.log("hauttyp:", hauttyp);
   console.log("date:", date);
-  if (name === "none") {name = "";} else { name = "AND \"name\" = $2";}
+  
   try {//FIGURE OUT HOW TO GET SPECIFIC DATA FROM DATABASE
     const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1 `/*${name !== "none" ? 'AND "name" = $2' : ''} ${artikelnr !== "none" ? 'AND "art_nr" = $3' : ''} ${date !== "none" ? 'AND "verkauf_datum" = $4' : ''} ${pflegeserie !== "none" ? 'AND "pflege_serie" = $5' : ''} ${kategorie !== "none" ? 'AND "kategorie" = $6' : ''} ${hauttyp !== "none" ? 'AND "hauttyp" = $7' : ''} ${farbe !== "none" ? 'AND "farbe" = $8' : ''}*/, [username, /*name, artikelnr, date, pflegeserie, kategorie, hauttyp, farbe*/]);
     console.log("result:", result);
