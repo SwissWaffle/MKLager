@@ -121,9 +121,9 @@ async function dataDisplay(data) {
             if (data[i].farbe === null) {
                 data[i].farbe = "";
             }
-            clone.querySelector("#text_extra").textContent = data[i].hauttyp + " " + data[i].farbe;
+            clone.querySelector("#text_extra").textContent = data[i].hauttyp + "" + data[i].farbe;
             clone.querySelector("#text_date").textContent = data[i].verkauf_datum;
-            clone.querySelector("#text_menge").textContent = data[i].menge;
+            clone.querySelector("#text_menge").textContent = data[i].menge+" Stk.";
             clone.querySelector("#text_name").textContent = data[i].name;
             clone.querySelector("#info").textContent = JSON.stringify(data[i]);
             clone.querySelector("#eintrag_single").setAttribute("PKey_Lager", data[i].PKey_Lager);
