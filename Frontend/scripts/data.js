@@ -51,13 +51,13 @@ async function dataSpecific() {
     console.log("verkauf_datum:", verkauf_datum);
     //console.log("farbe:", farbe);
     try {
-        const response = await fetch(`${api_url}/data/specific?username=${username}${name !== "" && name !== undefined ? `&name=${name}` : `&name=null`}${artikelnr !== "" && artikelnr !== undefined ? `&artikelnr=${artikelnr}` : `&artikelnr=null`}${pflegeserie !== "" && pflegeserie !== undefined ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=null`}${kategorie !== "" && kategorie !== undefined ? `&kategorie=${kategorie}` : `&kategorie=null`}${farbe === "" ? `&farbe=null` : `&farbe=${farbe}`}${hauttyp !== "" && hauttyp !== undefined ? `&hauttyp=${hauttyp}` : `&hauttyp=null`}${date ? `&date=${verkauf_datum}` : `&date=null`}`, {
+        const response = await fetch(`${api_url}/data/specific?username=${username}${name !== "" && name !== undefined ? `&name=${name}` : `&name=none`}${artikelnr !== "" && artikelnr !== undefined ? `&artikelnr=${artikelnr}` : `&artikelnr=none`}${pflegeserie !== "" && pflegeserie !== undefined ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=none`}${kategorie !== "" && kategorie !== undefined ? `&kategorie=${kategorie}` : `&kategorie=none`}${farbe === "" ? `&farbe=none` : `&farbe=${farbe}`}${hauttyp !== "" && hauttyp !== undefined ? `&hauttyp=${hauttyp}` : `&hauttyp=none`}${date ? `&date=${verkauf_datum}` : `&date=none`}`, {
             headers: {
                 "Content-Type": "application/json"
             }
         
         })
-        console.log("fetch", `${api_url}/data/specific?username=${username}${name !== null && name !== undefined ? `&name=${name}` : `&name=null`}${artikelnr !== null && artikelnr !== undefined ? `&artikelnr=${artikelnr}` : `&artikelnr=null`}${pflegeserie !== null && pflegeserie !== undefined ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=null`}${kategorie !== null && kategorie !== undefined ? `&kategorie=${kategorie}` : `&kategorie=null`}${farbe !== null && farbe !== undefined ? `&farbe=${farbe}` : `&farbe=null`}${hauttyp !== null && hauttyp !== undefined ? `&hauttyp=${hauttyp}` : `&hauttyp=null`}${date ? `&date=${verkauf_datum}` : `&date=null`}`);
+        console.log("fetch", `${api_url}/data/specific?username=${username}${name !== "" && name !== undefined ? `&name=${name}` : `&name=none`}${artikelnr !== "" && artikelnr !== undefined ? `&artikelnr=${artikelnr}` : `&artikelnr=none`}${pflegeserie !== "" && pflegeserie !== undefined ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=none`}${kategorie !== "" && kategorie !== undefined ? `&kategorie=${kategorie}` : `&kategorie=none`}${farbe === "" ? `&farbe=none` : `&farbe=${farbe}`}${hauttyp !== "" && hauttyp !== undefined ? `&hauttyp=${hauttyp}` : `&hauttyp=none`}${date ? `&date=${verkauf_datum}` : `&date=none`}`);
         const data = await response.json();
         dataDisplay(data);
         disEintragDisplay();
@@ -67,7 +67,7 @@ async function dataSpecific() {
         throw error;
     }
 }
-//https://mklager-api.nic-weber.workers.dev/data/specific?username=tester&name=&artikelnr=&pflegeserie=Repair&kategorie=&farbe=&hauttyp=&date=
+//https://mklager-api.nic-weber.workers.dev/data/specific?username=tester&name=null&artikelnr=null&pflegeserie=Repair&kategorie=null&farbe=null&hauttyp=null&date=null
 
 async function dataCreate() {
     var username = document.getElementById("username").textContent;
