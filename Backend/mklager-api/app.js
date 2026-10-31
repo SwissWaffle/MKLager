@@ -88,6 +88,9 @@ app.get("/data/create", async (req, res) => {
   console.log("artikelnr:", artikelnr);
   console.log("date:", date);
   console.log("menge:", menge);
+  if (date === "/") {
+    res.status(400).json({error: "Invalid date format"});
+    return;}
   try {
     const result = await sql.query(`INSERT INTO "Lager" ("FKey_User", "FKey_Produkte", "verkauf_datum", "menge") VALUES ((SELECT "PKey_User" FROM "User" WHERE "consultant_id" = $1), (SELECT "PKey_Produkte" FROM "Produkte" WHERE "art_nr" = $2), $3, $4)`, [username, artikelnr, date, menge]);
     res.json({success: true});
