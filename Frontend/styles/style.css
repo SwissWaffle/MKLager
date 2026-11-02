@@ -170,6 +170,7 @@ input[type=checkbox]{
     flex-direction: column;
     justify-content: center;
     justify-self: center;
+    width: 100%;
 }
 
 .home_buttons .buttons{
@@ -178,7 +179,7 @@ input[type=checkbox]{
 }
 
 .home_buttons .buttons button{
-    width: 100%;
+    width: 60%;
 }
 
 .user_info{
@@ -191,6 +192,16 @@ input[type=checkbox]{
 .user_info p{
     margin: auto;
     font-size: 1.5rem;
+}
+
+.quick_select{
+    display: block;
+    width: 100%;
+}
+
+.monat_select{
+    display: none;
+    width: 100%;
 }
 
 .filter{

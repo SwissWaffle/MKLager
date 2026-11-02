@@ -1,5 +1,7 @@
 var login = document.getElementById("login");
 var home = document.getElementById("home");
+var quick_select = document.getElementById("quick_select");
+var monat_select = document.getElementById("monat_select");
 var filter = document.getElementById("filter");
 var eintrag_display = document.getElementById("eintrag_display");
 var eintrag_create = document.getElementById("eintrag_create");
@@ -16,6 +18,16 @@ function disHome(){
     eintrag_create.style.display = "none";
     eintrag_change.style.display = "none";
 };
+
+function disQuickSelect(){
+    quick_select.style.display = "block";
+    monat_select.style.display = "none";
+}
+
+function disMonthSelect(){
+    quick_select.style.display = "none";
+    monat_select.style.display = "block";
+}
 
 function disLogin(){
     login.style.display = "block";
