@@ -21,8 +21,9 @@ app.get("/data/month", async (req, res) => {
   const { username, date } = req.query;
   console.log("username:", username);
   console.log("date:", date);
+  const zero = "0";
   try {
-  const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "verkauf_datum" = $1 AND "consultant_id" = $2 AND "menge" > 0 `, [date, username, name]);
+  const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "verkauf_datum" = $1 AND "consultant_id" = $2 AND "menge" > $3 `, [date, username, zero]);
   console.log("result:", result);
   const data = result.map(row => ({
     PKey_Lager: row.PKey_Lager,
