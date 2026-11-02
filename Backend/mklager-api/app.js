@@ -45,6 +45,33 @@ app.get("/data/month", async (req, res) => {
   }
 });
 
+app.get("/data/month/pastdate", async (req, res) => {
+  const { username, date } = req.query;
+  console.log("username:", username);
+  const zero = "0";
+  try {
+  const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "verkauf_datum" < $1 AND "consultant_id" = $2 AND "menge" > $3 `, [date, username, zero]);
+  console.log("result:", result);
+  const data = result.map(row => ({
+    PKey_Lager: row.PKey_Lager,
+    consultant: row.consultant,
+    name: row.name,
+    artikelnummer: row.art_nr,
+    pflegeserie: row.pflege_serie,
+    kategorie: row.kategorie,
+    hauttyp: row.hauttyp,
+    farbe: row.farbe,
+    verkauf_datum: row.verkauf_datum,
+    menge: row.menge,
+  }));
+  console.log("data:", data);
+  res.send(data);
+  } catch (error) {
+    console.error("Error occurred while getting data for month:", error);
+    res.status(500).json({error: "Internal server error"});
+  }
+});
+
 
 // NOT DONE!!!!!!!!!!!!!!!!!!!!!!!!!!
 app.get("/data/specific", async (req, res) => {
@@ -99,8 +126,6 @@ app.get("/data/create", async (req, res) => {
     console.error("Error occurred while creating data:", error);
     res.status(500).json({error: "Internal server error"});
   }
-
-
 });
 
 app.get("/user/login", async (req, res) => {

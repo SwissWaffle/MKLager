@@ -15,7 +15,6 @@ async function dataMonth(month) {
     var targetDate = new Date(now.getFullYear(), now.getMonth() + month, 1);
     var u_month = String(targetDate.getMonth() + 1).padStart(2, "0");
     var u_year = String(targetDate.getFullYear()).slice(-2);
-
     var verkauf_datum = u_month + "/" + u_year;
     console.log("verkauf_datum:", verkauf_datum);
      try {
@@ -24,6 +23,31 @@ async function dataMonth(month) {
                 "Content-Type": "application/json"
             }
             //https://mklager-api.nic-weber.workers.dev/data/month?username=tester&date=11/26
+        })
+        const data = await response.json();
+        dataDisplay(data);
+        disEintragDisplay();
+        return;
+    } catch (error) {
+        console.error("Error occurred while getting data:", error);
+        throw error;
+    }
+}
+
+async function dataMonthPast() {
+    var username = document.getElementById("username").textContent;
+    var now = new Date();
+    var targetDate = new Date(now.getFullYear(), now.getMonth(), 1);
+    var u_month = String(targetDate.getMonth() + 1).padStart(2, "0");
+    var u_year = String(targetDate.getFullYear()).slice(-2);
+    var verkauf_datum = u_month + "/" + u_year;
+    console.log("verkauf_datum:", verkauf_datum);
+     try {
+        const response = await fetch(`${api_url}/data/month/pastdate?username=${username}&date=${verkauf_datum}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+            //https://mklager-api.nic-weber.workers.dev/data/month/pastdate?username=tester&date=11/26
         })
         const data = await response.json();
         dataDisplay(data);
@@ -133,5 +157,5 @@ async function dataDisplay(data) {
 }
 
 async function editButton(pkey) {
-    
+
 }
