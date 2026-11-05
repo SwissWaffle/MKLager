@@ -73,7 +73,7 @@ app.get("/data/month/pastdate", async (req, res) => {
 });
 
 
-// NOT DONE!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 app.get("/data/specific", async (req, res) => {
   const { username, name, artikelnr, pflegeserie, kategorie, farbe, hauttyp, date } = req.query;
   console.log("username:", username);
@@ -85,6 +85,7 @@ app.get("/data/specific", async (req, res) => {
   console.log("hauttyp:", hauttyp);
   console.log("date:", date);
   
+  // made with AI--------------
   try {
     const filters = [
       ["name", name],
@@ -97,7 +98,7 @@ app.get("/data/specific", async (req, res) => {
     ];
     const values = [username];
     const conditions = [`"consultant_id" = $1`];
-
+    
     for (const [column, value] of filters) {
       if (value !== undefined && value !== null && value !== "" && value !== "none") {
         values.push(value);
@@ -109,6 +110,7 @@ app.get("/data/specific", async (req, res) => {
       `SELECT * FROM "v_full_lager" WHERE ${conditions.join(" AND ")}`,
       values
     );
+  //--------------------------------
     console.log("result:", result);
     const data = result.map(row => ({
     PKey_Lager: row.PKey_Lager,
