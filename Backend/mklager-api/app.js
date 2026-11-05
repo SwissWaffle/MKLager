@@ -84,10 +84,31 @@ app.get("/data/specific", async (req, res) => {
   console.log("farbe:", farbe);
   console.log("hauttyp:", hauttyp);
   console.log("date:", date);
-  const empty = " ";
   
-  try {//FIGURE OUT HOW TO GET SPECIFIC DATA FROM DATABASE
-    const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1 ${name !== "none" ? `AND "name" = $2` : `$3`}`/*${artikelnr !== "none" ? 'AND "art_nr" = $3' : ''} ${date !== "none" ? 'AND "verkauf_datum" = $4' : ''} ${pflegeserie !== "none" ? 'AND "pflege_serie" = $5' : ''} ${kategorie !== "none" ? 'AND "kategorie" = $6' : ''} ${hauttyp !== "none" ? 'AND "hauttyp" = $7' : ''} ${farbe !== "none" ? 'AND "farbe" = $8' : ''}*/, [username, name, /*artikelnr, date, pflegeserie, kategorie, hauttyp, farbe*/ empty]);
+  try {
+    const filters = [
+      ["name", name],
+      ["art_nr", artikelnr],
+      ["verkauf_datum", date],
+      ["pflege_serie", pflegeserie],
+      ["kategorie", kategorie],
+      ["hauttyp", hauttyp],
+      ["farbe", farbe],
+    ];
+    const values = [username];
+    const conditions = [`"consultant_id" = $1`];
+
+    for (const [column, value] of filters) {
+      if (value !== undefined && value !== null && value !== "" && value !== "none") {
+        values.push(value);
+        conditions.push(`"${column}" = $${values.length}`);
+      }
+    }
+
+    const result = await sql.query(
+      `SELECT * FROM "v_full_lager" WHERE ${conditions.join(" AND ")}`,
+      values
+    );
     console.log("result:", result);
     const data = result.map(row => ({
     PKey_Lager: row.PKey_Lager,
