@@ -2,7 +2,7 @@ var api_url = "https://mklager-api.nic-weber.workers.dev";
 
 async function handleLogin() {
     const output = document.getElementById("login_error_msg");
-    const connumber = document.getElementById("connumber").value.toLowerCase();
+    const connumber = document.getElementById("connumber").value;
     const password = document.getElementById("password").value;
     try {
         const response = await fetch(`${api_url}/user/login?username=${connumber}&password=${password}`, {
