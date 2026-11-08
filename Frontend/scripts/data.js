@@ -59,7 +59,16 @@ async function dataMonthPast() {
     }
 }
 
-//NOT DONE!!!!!!!!!!!!!!!!!!!!!!!!!!
+async function dataSpecificReset() {
+    document.getElementById("filter_name").value = "";
+    document.getElementById("filter_artikelnr").value = "";
+    document.getElementById("filter_pflege_serie").value = "";
+    document.getElementById("filter_kategorie").value = "";
+    document.getElementById("filter_farbe").value = "";
+    document.getElementById("filter_hauttyp").value = "";
+    document.getElementById("filter_datum").value = "";
+}
+
 async function dataSpecific() {
     var username = document.getElementById("username").textContent;
     var name = document.getElementById("filter_name").value;
@@ -73,7 +82,6 @@ async function dataSpecific() {
     var month = date.slice(5, 7);
     var verkauf_datum = month + "/" + year.slice(-2);
     console.log("verkauf_datum:", verkauf_datum);
-    //console.log("farbe:", farbe);
     try {
         const response = await fetch(`${api_url}/data/specific?username=${username}${name !== "" && name !== undefined ? `&name=${name}` : `&name=none`}${artikelnr !== "" && artikelnr !== undefined ? `&artikelnr=${artikelnr}` : `&artikelnr=none`}${pflegeserie !== "" && pflegeserie !== undefined ? `&pflegeserie=${pflegeserie}` : `&pflegeserie=none`}${kategorie !== "" && kategorie !== undefined ? `&kategorie=${kategorie}` : `&kategorie=none`}${farbe === "" ? `&farbe=none` : `&farbe=${farbe}`}${hauttyp !== "" && hauttyp !== undefined ? `&hauttyp=${hauttyp}` : `&hauttyp=none`}${date ? `&date=${verkauf_datum}` : `&date=none`}`, {
             headers: {
@@ -118,7 +126,7 @@ async function dataCreate() {
         const data = await response.json();
         if (data.success) {
             console.log("Data created successfully");
-            disHome();
+            dataCreateReset();
         }else {
             console.error("Failed to create data:", data.error);
             output.textContent = "*Eingetragene Daten sind ungültig*";
@@ -130,6 +138,13 @@ async function dataCreate() {
     }
 }
 
+async function dataCreateReset() {
+    document.getElementById("create_artikelnr").value = "";
+    document.getElementById("create_datum").value = "";
+    document.getElementById("create_menge").value = "";
+    document.getElementById("create_error_msg").textContent = "";
+    disHome();
+}
 
 async function dataDisplay(data) {
     var length = data.length;
