@@ -58,32 +58,10 @@
                     </label>
                     <input class="input_field" type="password" id="password" name="password">
                 </div>
-            <!--
-            <div class="element_Input checkbox">
-                <input class="checkbox_inner" type="checkbox" id="remember" name="remember">
-                <label for="remember" name="remember me?"> remember me?</label>
-            </div>
-            -->
                 <div class="buttons">
                     <button type="button" class="input_button" id="login_button" onclick="handleLogin()">Login</button>
                 </div>
-                <div>
-                    <pre class="error_msg" id="login_error_msg"></pre>
-                </div>
-
-            <!--
-            <div id ="testing" class="element_Input">
-                <input class="date_field" type="month" id="test" name="datum">
-                <div class="buttons">
-                    <button type="button" class="input_button" onclick="tester()">Test</button>
-
-                </div>
-                
-            </div>
-            <p class="testing" id="testing_out"></p>
-            -->
-
-
+                <pre class="error_msg" id="login_error_msg"></pre>
             </form>
         </div>
 
@@ -194,7 +172,7 @@
                     </div>
                     <div class="row">
                         <div class="text name" id="text_name">{{name}}</div>
-                        <button type="button" class="input_button edit" onclick="disEintragChange()">&#x270E</button>
+                        <button type="button" class="input_button edit" onclick="editButton(this.closest('.eintrag_single').querySelector('#info').textContent)">&#x270E</button>
                     </div>
                     <p hidden id="info">{{data}}</p>
                 </div>
@@ -231,9 +209,7 @@
                     <button type="button" class="input_button" onclick="dataCreate()">Erstellen</button>
                     <button type="button" class="input_button" onclick="dataCreateReset()">Abbrechen</button>
                 </div>
-                <div>
-                    <pre class="error_msg" id="create_error_msg"></pre>
-                </div>
+                <pre class="error_msg" id="create_error_msg"></pre>
             </form>
         </div>
 
@@ -241,58 +217,70 @@
             <div class="title">Eintrag ändern</div>
             <form class="eintrag_input">
                 <div class="element_Input">
-                    <label for="name" name="Name">
+                    <label for="change_name" name="Name">
                         Name
                     </label>
-                    <input class="input_field" type="text" id="change_name" name="name" readonly>
+                    <input class="input_field" type="text" id="change_name" name="change_name" readonly>
                 </div>
                 <div class="element_Input">
-                    <label for="artikelnr" name="Artikel Nr.">
+                    <label for="change_artikelnr" name="Artikel Nr.">
                         Artikel Nr.
                     </label>
-                    <input class="input_field" type="text" id="change_artikelnr" name="artikel nr." readonly>
+                    <input class="input_field" type="text" id="change_artikelnr" name="change_artikelnr" readonly>
                 </div>
                 <div class="element_Input">
-                    <label for="pflege_serie" name="Pflege Serie">
+                    <label for="change_pflege_serie" name="Pflege Serie">
                         Pflege Serie
                     </label>
-                    <input class="input_field" type="text" id="change_pflege_serie" name="pflege_serie" readonly>
+                    <input class="input_field" type="text" id="change_pflege_serie" name="change_pflege_serie" readonly>
                 </div>
                 <div class="element_Input">
-                    <label for="kategorie" name="Kategorie">
+                    <label for="change_kategorie" name="Kategorie">
                         Kategorie
                     </label>
-                    <input class="input_field" type="text" id="change_kategorie" name="kategorie" readonly>
+                    <input class="input_field" type="text" id="change_kategorie" name="change_kategorie" readonly>
                 </div>
                 <div class="element_Input">
-                    <label for="farbe" name="Farbe">
+                    <label for="change_farbe" name="Farbe">
                         Farbe
                     </label>
-                    <input class="input_field" type="text" id="change_farbe" name="farbe" readonly>
+                    <input class="input_field" type="text" id="change_farbe" name="change_farbe" readonly>
                 </div>
                 <div class="element_Input">
-                    <label for="hauttyp" name="Hauttyp">
+                    <label for="change_hauttyp" name="Hauttyp">
                         Hauttyp
                     </label>
-                    <input class="input_field" type="text" id="change_hauttyp" name="hauttyp" readonly>
+                    <input class="input_field" type="text" id="change_hauttyp" name="change_hauttyp" readonly>
                 </div>
                 <div class="element_Input">
-                    <label for="datum" name="Datum">
+                    <label for="change_datum" name="Datum">
                         Verkauf Datum
                     </label>
-                    <input class="date_field" type="month" id="change_datum" name="datum">
+                    <input class="date_field" type="month" id="change_datum" name="change_datum">
                 </div>
                 <div class="element_Input">
-                    <label for="menge" name="Menge">
+                    <label for="change_menge" name="Menge">
                         Menge
                     </label>
-                    <input class="input_field" type="number" id="change_menge" name="menge">
+                    <input class="input_field" type="number" id="change_menge" name="change_menge">
                 </div>
                 <div class="buttons">
                     <button type="button" class="input_button" onclick="disEintragDisplay()">Speichern</button>
+                    <button type="button" class="input_button" onclick="disDeleteAsk()">Eintrag Löschen</button>
                     <button type="button" class="input_button" onclick="disEintragDisplay()">Abbrechen</button>
                 </div>
             </form>
+            <div class="delete_confirm" id="delete_confirm">
+                <div class="delete_ask" id="delete_ask">
+                    <div>Eintrag wirklich löschen?</div>
+                    <div class="buttons">
+                        <button type="button" class="input_button" id="delete_confirm" onclick="dataDeleteConfirm()">Ja</button>
+                        <button type="button" class="input_button" id="delete_cancel" onclick="disDeleteCancel()">Nein</button>
+                    </div>
+                </div>
+            </div>
+            <pre class="error_msg" id="change_error_msg"></pre>
+            <p hidden id="change_pkey"></p>
         </div>
 
         <div class="footer_buffer"></div>

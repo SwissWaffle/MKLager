@@ -6,8 +6,7 @@ var filter = document.getElementById("filter");
 var eintrag_display = document.getElementById("eintrag_display");
 var eintrag_create = document.getElementById("eintrag_create");
 var eintrag_change = document.getElementById("eintrag_change");
-
-
+var delete_confirm = document.getElementById("delete_confirm");
 
 
 function disHome(){
@@ -54,6 +53,7 @@ function disEintragDisplay(){
     eintrag_display.style.display = "block";
     eintrag_create.style.display = "none";
     eintrag_change.style.display = "none";
+    delete_confirm.style.display = "none";
 };
 
 function disEintragCreate(){
@@ -73,3 +73,11 @@ function disEintragChange(){
     eintrag_create.style.display = "none";
     eintrag_change.style.display = "block";
 };
+
+function disDeleteAsk(){
+    delete_confirm.style.display = "block";
+}
+
+function disDeleteCancel(){
+    delete_confirm.style.display = "none";
+}

@@ -138,6 +138,66 @@ async function dataCreate() {
     }
 }
 
+async function dataChange() {
+    var date = document.getElementById("change_datum").value;
+    var menge = document.getElementById("change_menge").value;
+    var pkey = document.getElementById("change_pkey").textContent;
+    var year = date.slice(0, 4);
+    var month = date.slice(5, 7);
+    var verkauf_datum = month + "/" + year.slice(-2);
+    var output = document.getElementById("change_error_msg");
+    output.textContent = "";
+    console.log("username:", username);
+    console.log("verkauf_datum:", verkauf_datum);
+    console.log("menge:", menge);
+    console.log("pkey:", pkey);
+    try {
+        const response = await fetch(`${api_url}/data/change?verkauf_datum=${verkauf_datum}&menge=${menge}&pkey=${pkey}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json();
+        if (data.success) {
+            console.log("Data changed successfully");
+            returnHome();
+        }else {
+            console.error("Failed to change data:", data.error);
+            output.textContent = "*Eingetragene Daten sind ungültig*";
+        }
+    }catch (error) {
+        console.error("Error occurred while changing data:", error);
+        throw error;
+    }
+    
+}
+
+async function dataDelete() {
+    var pkey = document.getElementById("change_pkey").textContent;
+    console.log("pkey:", pkey);
+    try {
+        const response = await fetch(`${api_url}/data/delete?pkey=${pkey}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await response.json();
+        if (data.success) {
+            console.log("Data deleted successfully");
+            returnHome();
+        }
+        else {
+            console.error("Failed to delete data:", data.error);
+            output.textContent = "*Löschen war nicht erfolgreich*";
+        }
+
+    }catch (error) {
+        console.error("Error occurred while deleting data:", error);
+        throw error;
+    }
+}
+
+
 async function dataCreateReset() {
     document.getElementById("create_artikelnr").value = "";
     document.getElementById("create_datum").value = "";
@@ -171,6 +231,16 @@ async function dataDisplay(data) {
         return;
 }
 
-async function editButton(pkey) {
-
+async function editButton(info) {
+    var data = JSON.parse(info);
+    document.getElementById("change_name").value = data.name;
+    document.getElementById("change_artikelnr").value = data.artikelnummer;
+    document.getElementById("change_pflege_serie").value = data.pflegeserie;
+    document.getElementById("change_kategorie").value = data.kategorie;
+    document.getElementById("change_farbe").value = data.farbe;
+    document.getElementById("change_hauttyp").value = data.hauttyp;
+    document.getElementById("change_datum").value = "20" + data.verkauf_datum.slice(-2) + "-" + data.verkauf_datum.slice(0, 2);
+    document.getElementById("change_menge").value = data.menge;
+    document.getElementById("change_pkey").textContent = data.PKey_Lager;
+    disEintragChange();
 }

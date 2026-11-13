@@ -247,6 +247,47 @@ input[type=checkbox]{
     padding: 1rem;
 }
 
+.delete_confirm{
+    display: none;
+    padding: 1rem;
+}
+
+.delete_ask{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-self: center;
+    margin: 0;
+}
+
+.delete_ask div{
+    font-size: 1.2rem;
+}
+
+.delete_ask .input_button{
+    width: 50%;
+}
+
+button#delete_confirm{
+    margin-top: 1rem;
+    background: #cc0a0a;
+}
+
+button#delete_confirm:hover{
+    transition: .2s ease;
+    background: #a50a0a;
+}
+
+button#delete_cancel{
+    margin-top: 1rem;
+    background: #3cba06;
+}
+
+button#delete_cancel:hover{
+    transition: .2s ease;
+    background: #2a8a04;
+}
+
 .eintrag_display{
     display: none;
     padding: 1rem;
@@ -282,7 +323,6 @@ input[type=checkbox]{
 .divide{
     background: black;
     width: 1px;
-
 }
 
 .name{

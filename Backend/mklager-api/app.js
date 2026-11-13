@@ -151,6 +151,33 @@ app.get("/data/create", async (req, res) => {
   }
 });
 
+app.get("/data/change", async (req, res) => {
+  const { verkauf_datum, menge, pkey } = req.query;
+  console.log("verkauf_datum:", verkauf_datum);
+  console.log("menge:", menge);
+  console.log("pkey:", pkey);
+  try {
+    const result = await sql.query(`UPDATE "Lager" SET "verkauf_datum" = $1, "menge" = $2 WHERE "PKey_Lager" = $3`, [verkauf_datum, menge, pkey]);
+    res.json({success: true});
+  } catch (error) {
+    console.error("Error occurred while changing data:", error);
+    res.status(500).json({error: "Internal server error"});
+  }
+});
+
+app.get("/data/delete", async (req, res) => {
+  const { pkey } = req.query;
+  console.log("pkey:", pkey);
+  try {
+    const result = await sql.query(`DELETE FROM "Lager" WHERE "PKey_Lager" = $1`, [pkey]);
+    res.json({success: true});
+  } catch (error) {
+    console.error("Error occurred while deleting data:", error);
+    res.status(500).json({error: "Internal server error"});
+  }
+});
+
+
 app.get("/user/login", async (req, res) => {
   const { username, password: entry_password} = req.query;
   try {
