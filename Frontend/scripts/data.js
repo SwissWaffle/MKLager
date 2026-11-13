@@ -165,6 +165,7 @@ async function dataChange() {
             console.error("Failed to change data:", data.error);
             output.textContent = "*Eingetragene Daten sind ungültig*";
         }
+        return;
     }catch (error) {
         console.error("Error occurred while changing data:", error);
         throw error;
@@ -172,8 +173,9 @@ async function dataChange() {
     
 }
 
-async function dataDelete() {
+async function dataDeleteConfirm() {
     var pkey = document.getElementById("change_pkey").textContent;
+    output = document.getElementById("change_error_msg");
     console.log("pkey:", pkey);
     try {
         const response = await fetch(`${api_url}/data/delete?pkey=${pkey}`, {
@@ -190,7 +192,7 @@ async function dataDelete() {
             console.error("Failed to delete data:", data.error);
             output.textContent = "*Löschen war nicht erfolgreich*";
         }
-
+        return;
     }catch (error) {
         console.error("Error occurred while deleting data:", error);
         throw error;
