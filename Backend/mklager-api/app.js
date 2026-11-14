@@ -190,7 +190,16 @@ app.get("/data/delete", async (req, res) => {
     } catch (diagnosticError) {
       console.error("Could not inspect database context for failed deletion:", diagnosticError);
     }
-    console.error("Error occurred while deleting data:", error);
+    console.error("Error occurred while deleting data:", {
+      message: error && error.message ? error.message : String(error),
+      code: error && error.code,
+      detail: error && error.detail,
+      hint: error && error.hint,
+      where: error && error.where,
+      schema: error && error.schema,
+      table: error && error.table,
+      constraint: error && error.constraint,
+    });
     res.status(500).json({error: "Internal server error"});
   }
 });
