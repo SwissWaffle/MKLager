@@ -172,6 +172,24 @@ app.get("/data/delete", async (req, res) => {
     const result = await sql.query(`DELETE FROM "Lager" WHERE "PKey_Lager" = $1`, [pkey]);
     res.json({success: true});
   } catch (error) {
+    try {
+      const [context] = await sql.query(`
+        SELECT current_user AS role,
+               current_database() AS database,
+               current_setting('search_path') AS search_path,
+               to_regclass('"Lager"')::text AS resolved_table,
+               (
+                 SELECT n.nspname
+                 FROM pg_class c
+                 JOIN pg_namespace n ON n.oid = c.relnamespace
+                 WHERE c.oid = to_regclass('"Lager"')
+               ) AS table_schema,
+               has_table_privilege(current_user, to_regclass('"Lager"'), 'DELETE') AS can_delete
+      `);
+      console.error("Database context for failed deletion:", context);
+    } catch (diagnosticError) {
+      console.error("Could not inspect database context for failed deletion:", diagnosticError);
+    }
     console.error("Error occurred while deleting data:", error);
     res.status(500).json({error: "Internal server error"});
   }
