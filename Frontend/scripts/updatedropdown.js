@@ -1,6 +1,8 @@
+var api_url = "https://mklager-api.nic-weber.workers.dev";
+
 async function updatePflege_Serie() {
     try {
-        const response = await fetch(`/data/pflege_serie`);
+        const response = await fetch(`${api_url}/data/pflege_serie`);
         const data = await response.json();
         const pflegeSerieSelect = document.getElementById("filter_pflege_serie");
         pflegeSerieSelect.innerHTML = "";
@@ -18,7 +20,7 @@ async function updatePflege_Serie() {
 
 async function updateKategorie() {
     try {
-        const response = await fetch(`/data/kategorie`);
+        const response = await fetch(`${api_url}/data/kategorie`);
         const data = await response.json();
         const kategorieSelect = document.getElementById("filter_kategorie");
         kategorieSelect.innerHTML = "";
@@ -35,7 +37,7 @@ async function updateKategorie() {
 
 async function updateHauttyp() {
     try {
-        const response = await fetch(`/data/hauttyp`);
+        const response = await fetch(`${api_url}/data/hauttyp`);
         const data = await response.json();
         const hauttypSelect = document.getElementById("filter_hauttyp");
         hauttypSelect.innerHTML = "";
