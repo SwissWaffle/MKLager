@@ -57,3 +57,5 @@ async function updateHauttyp() {
         console.error("Error updating Hauttyp dropdown:", error);
     }
 }
+
+updatePflege_Serie();
