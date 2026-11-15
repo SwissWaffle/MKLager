@@ -13,10 +13,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/data/hauttyp", async (req, res) => {
-  const result = await sql.query(`SELECT * FROM "Hauttyp" ORDER BY "PKey_Hauttyp" ASC`);
+  const result = await sql.query(`SELECT "hauttyp" FROM "Hauttyp"`);
   const data = result.map(row => ({
-    PKey_Hauttyp: row.PKey_Hauttyp,
-    hauttyp: row.Hauttyp,
+    hauttyp: row.hauttyp,
   }));
   res.send(data);
 });
@@ -30,10 +29,9 @@ app.get("/data/pflege_serie", async (req, res) => {
 });
 
 app.get("/data/kategorie", async (req, res) => {
-  const result = await sql.query(`SELECT * FROM "Kategorie" ORDER BY "PKey_Kategorie" ASC`);
+  const result = await sql.query(`SELECT "kategorie" FROM "Kategorie"`);
   const data = result.map(row => ({
-    PKey_Kategorie: row.PKey_Kategorie,
-    kategorie: row.Kategorie,
+    kategorie: row.kategorie,
   }));
   res.send(data);
 });
