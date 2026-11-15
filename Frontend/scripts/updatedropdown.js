@@ -1,17 +1,21 @@
 var api_url = "https://mklager-api.nic-weber.workers.dev";
 
+const template = document.getElementById("filter_dropdown_template");
+
 async function updatePflege_Serie() {
     try {
         const response = await fetch(`${api_url}/data/pflege_serie`);
         const data = await response.json();
-        const pflegeSerieSelect = document.getElementById("filter_pflege_serie");
-        pflegeSerieSelect.innerHTML = "";
         console.log("Pflege Serie data:", data);
+        const pflegeSerieSelect = document.getElementById("filter_pflege_serie");
+        pflegeSerieSelect.innerHTML = '<option value=""></option>';
+
         data.forEach(item => {
-            const option = document.createElement("option");
+            var clone = template.content.cloneNode(true);
+            const option = clone.querySelector("option");
             option.value = item.pflege_serie;
             option.textContent = item.pflege_serie;
-            pflegeSerieSelect.appendChild(option);
+            pflegeSerieSelect.appendChild(clone);
         });
     } catch (error) {
         console.error("Error updating Pflege Serie dropdown:", error);
