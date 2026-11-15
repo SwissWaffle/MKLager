@@ -8,11 +8,29 @@ const sql = neon(process.env.DATABASE_URL);
 
 app.use(cors());
 
-app.get("/data", async (req, res) => {
+app.get("/data/hauttyp", async (req, res) => {
   const result = await sql.query(`SELECT * FROM "Hauttyp" ORDER BY "PKey_Hauttyp" ASC`);
   const data = result.map(row => ({
     PKey_Hauttyp: row.PKey_Hauttyp,
     Hauttyp: row.Hauttyp,
+  }));
+  res.send(data);
+});
+
+app.get("/data/pflege_serie", async (req, res) => {
+  const result = await sql.query(`SELECT * FROM "Pflege_Serie" ORDER BY "PKey_Pflege_Serie" ASC`);
+  const data = result.map(row => ({
+    PKey_Pflege_Serie: row.PKey_Pflege_Serie,
+    Pflege_Serie: row.Pflege_Serie,
+  }));
+  res.send(data);
+});
+
+app.get("/data/kategorie", async (req, res) => {
+  const result = await sql.query(`SELECT * FROM "Kategorie" ORDER BY "PKey_Kategorie" ASC`);
+  const data = result.map(row => ({
+    PKey_Kategorie: row.PKey_Kategorie,
+    Kategorie: row.Kategorie,
   }));
   res.send(data);
 });
