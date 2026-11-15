@@ -8,6 +8,10 @@ const sql = neon(process.env.DATABASE_URL);
 
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.get("/data/hauttyp", async (req, res) => {
   const result = await sql.query(`SELECT * FROM "Hauttyp" ORDER BY "PKey_Hauttyp" ASC`);
   const data = result.map(row => ({

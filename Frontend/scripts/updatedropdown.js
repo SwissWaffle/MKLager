@@ -18,6 +18,8 @@ async function updatePflege_Serie() {
     }
 }
 
+//https://mklager-api.nic-weber.workers.dev/data/pflege_serie
+
 async function updateKategorie() {
     try {
         const response = await fetch(`${api_url}/data/kategorie`);
