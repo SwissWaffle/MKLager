@@ -24,7 +24,7 @@ app.get("/data/hauttyp", async (req, res) => {
 app.get("/data/pflege_serie", async (req, res) => {
   const result = await sql.query(`SELECT * FROM "Pflege_Serie" ORDER BY "PKey_Pflege_Serie" ASC`);
   const data = result.map(row => ({
-    pflege_Serie: row.Pflege_Serie,
+    Pflege_Serie: row.Pflege_Serie,
   }));
   res.send(data);
 });
