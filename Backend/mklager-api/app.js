@@ -36,6 +36,30 @@ app.get("/data/kategorie", async (req, res) => {
   res.send(data);
 });
 
+app.get("/data/all", async (req, res) => {
+  const { username } = req.query;
+  console.log("username:", username);
+  try {
+    const result = await sql.query(`SELECT * FROM "v_full_lager" WHERE "consultant_id" = $1`, [username]);
+    const data = result.map(row => ({
+      PKey_Lager: row.PKey_Lager,
+      consultant: row.consultant,
+      name: row.name,
+      artikelnummer: row.art_nr,
+      pflegeserie: row.pflege_serie,
+      kategorie: row.kategorie,
+      hauttyp: row.hauttyp,
+      farbe: row.farbe,
+      verkauf_datum: row.verkauf_datum,
+      menge: row.menge,
+    }));
+    res.send(data);
+  } catch (error) {
+    console.error("Error occurred while getting all data:", error);
+    res.status(500).json({error: "Internal server error"});
+  }
+});
+
 app.get("/data/month", async (req, res) => {
   const { username, date } = req.query;
   console.log("username:", username);

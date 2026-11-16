@@ -9,6 +9,24 @@ async function returnHome() {
     disHome();
 }
 
+async function dataAll() {
+    var username = document.getElementById("username").textContent;
+    try {
+        const response = await fetch(`${api_url}/data/all?username=${username}`, {
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await response.json();
+        dataDisplay(data);
+        disEintragDisplay();
+        return;
+    } catch (error) {
+        console.error("Error occurred while getting data:", error);
+        throw error;
+    }
+}
+
 async function dataMonth(month) {
     var username = document.getElementById("username").textContent;
     var now = new Date();
