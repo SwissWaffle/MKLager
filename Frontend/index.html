@@ -105,13 +105,13 @@
                     <input class="input_field" type="text" id="filter_name" name="name">
                 </div>
                 <div class="element_Input">
-                    <label for="artikelnr" name="Artikel Nr.">
+                    <label for="filter_artikelnr" name="Artikel Nr.">
                         Artikel Nr.
                     </label>
-                    <input class="input_field" type="text" id="filter_artikelnr" name="artikel nr.">
+                    <input class="input_field" type="number" id="filter_artikelnr" name="artikel nr.">
                 </div>
                 <div class="element_Input">
-                    <label for="pflege_serie" name="Pflege Serie">
+                    <label for="filter_pflege_serie" name="Pflege Serie">
                         Pflege Serie
                     </label>
                     <select class="select_field" id="filter_pflege_serie" name="pflege serie">
@@ -119,7 +119,7 @@
                     </select>
                 </div>
                 <div class="element_Input">
-                    <label for="kategorie" name="Kategorie">
+                    <label for="filter_kategorie" name="Kategorie">
                         Kategorie
                     </label>
                     <select class="select_field" id="filter_kategorie" name="kategorie">
@@ -127,13 +127,13 @@
                     </select>
                 </div>
                 <div class="element_Input">
-                    <label for="farbe" name="Farbe">
+                    <label for="filter_farbe" name="Farbe">
                         Farbe
                     </label>
                     <input class="input_field" type="text" id="filter_farbe" name="farbe">
                 </div>
                 <div class="element_Input">
-                    <label for="hauttyp" name="Hauttyp">
+                    <label for="filter_hauttyp" name="Hauttyp">
                         Hauttyp
                     </label>
                     <select class="select_field" id="filter_hauttyp" name="hauttyp">
@@ -141,7 +141,7 @@
                     </select>
                 </div>
                 <div class="element_Input">
-                    <label for="datum" name="Datum">
+                    <label for="filter_datum" name="Datum">
                         Verkauf Datum
                     </label>
                     <input class="date_field" type="month" id="filter_datum" name="datum">
@@ -187,19 +187,19 @@
             <div class="title">Eintrag erstellen</div>
             <form class="eintrag_input">
                 <div class="element_Input">
-                    <label for="artikelnr" name="Artikel Nr.">
+                    <label for="create_artikelnr" name="Artikel Nr.">
                         Artikel Nr.
                     </label>
-                    <input class="input_field" type="text" id="create_artikelnr" name="artikel nr." maxlength="8">
+                    <input class="input_field" type="number" id="create_artikelnr" name="artikel nr." maxlength="8">
                 </div>
                 <div class="element_Input">
-                    <label for="datum" name="Datum">
+                    <label for="create_datum" name="Datum">
                         Verkauf Datum
                     </label>
                     <input class="date_field" type="month" id="create_datum" name="datum">
                 </div>
                 <div class="element_Input">
-                    <label for="menge" name="Menge">
+                    <label for="create_menge" name="Menge">
                         Menge
                     </label>
                     <input class="input_field" type="number" id="create_menge" name="menge">
@@ -225,7 +225,7 @@
                     <label for="change_artikelnr" name="Artikel Nr.">
                         Artikel Nr.
                     </label>
-                    <input class="input_field" type="text" id="change_artikelnr" name="change_artikelnr" readonly>
+                    <input class="input_field" type="number" id="change_artikelnr" name="change_artikelnr" readonly>
                 </div>
                 <div class="element_Input">
                     <label for="change_pflege_serie" name="Pflege Serie">
