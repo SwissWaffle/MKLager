@@ -327,7 +327,7 @@ button#delete_cancel:hover{
 }
 
 .name{
-    width: 90%;
+    width: 70%;
 }
 
 .date{
@@ -339,7 +339,7 @@ button#delete_cancel:hover{
 }
 
 .extra{
-    width: 70%;
+    width: 90%;
 }
 
 .input_button.edit{

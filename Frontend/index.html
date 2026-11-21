@@ -163,14 +163,14 @@
                 <div class="eintrag_single" id="eintrag_single">
                     <div hidden id="pkey">{{pkey}}</div>
                     <div class="row">
-                        <div class="text extra" id="text_extra">{{hauttyp}}{{farbe}}</div>
+                        <div class="text name" id="text_name">{{name}}</div>
                         <div class="divide"></div>
                         <div class="text date" id="text_date">{{verkauf_datum}}</div>
                         <div class="divide"></div>
                         <div class="text menge" id="text_menge">{{menge}}</div>
                     </div>
                     <div class="row">
-                        <div class="text name" id="text_name">{{name}}</div>
+                        <div class="text extra" id="text_extra">{{hauttyp}}{{farbe}}</div>
                         <button type="button" class="input_button edit" onclick="editButton(this.closest('.eintrag_single').querySelector('#info').textContent)">&#x270E</button>
                     </div>
                     <p hidden id="info">{{data}}</p>
